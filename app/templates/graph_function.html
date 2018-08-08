@@ -1,0 +1,150 @@
+{% extends "layout.html" %}
+{% block title %} Função {% endblock%}
+{% block script %}
+    <script src="https://unpkg.com/d3@3/d3.min.js"></script>
+    <script src="https://unpkg.com/function-plot@1/dist/function-plot.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".hidden-show").click(function(){
+                $(".lateral").animate({
+                    height: 'toggle'
+                });
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block body %}
+<!--<div class="row">
+    <div class="col-1"></div>
+    <!-- ESC -->
+    <!--<div class="col-1">
+        <button class="btn btn-basic hidden-show">Abrir/Fechar</button>
+    </div>
+</div> -->
+
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-3 lateral">        
+        <!-- form -->
+        <form method="GET" class="form-group">
+            <!-- Entrada de dados -->
+            <div class="card bg-light">
+                <!-- Entrada da função -->
+                <div class="card-header">
+                    <h5 class="card-title text-center">Função</h5>
+                </div>
+                <div class="card-body">
+                    <div class="input-group mb-3">
+                        <!-- Input Function -->
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">f(x) =</span>
+                            <span>
+                                <input list="functions" id="input_function" type="text" class="form-control" name="input_function" placeholder='Entre com uma função' value="{{ dic.input_function }}">
+                            </span>
+                            <!-- https://www.w3schools.com/html/tryit.asp?filename=tryhtml_elem_datalist -->
+                            <datalist id="functions">"",
+                                <option value='ax + b'>ax + b</option>
+                                <option value='ax^2 + bx + c'>ax^2 + bx + c</option>
+                                <option value='ax^3 + bx^2 + cx + d'>ax^3 + bx^2 + cx + d</option>
+                                <option value='ax^4 + bx^3 + cx^2 + dx + e'>ax^4 + bx^3 + cx^2 + dx + e</option>
+                                <!--{% for function in dic.list_functions %}
+                                    <option value="{{ function }}">{{ function }}</option>
+                                {% endfor %}-->
+                            </datalist>
+                        </div>
+                    </div>
+                </div>
+                <!-- Variáveis da função -->
+                {% if dic.function.dic_variables %}
+                    <div class="card-header">
+                        <h5 class="card-title text-center">Variáveis</h5> 
+                    </div>               
+                    <div class="card-body">
+                        <div class="input-group">
+                            <!-- Linha: Input Variables -->
+                            <div class="form-row">
+                                {% for key in dic.function.dic_variables %}
+                                    <!-- variavel individual -->
+                                    <div class="input-group-prepend col-6">
+                                        <span class="input-group-text" id={{ key }}>{{ key }}</span>
+                                        <span><input id={{ key }} type="number" step="any" class="form-control" aria-label="Small"  name={{ key }} value='{{ dic.function.dic_variables[key] }}'></span>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <!-- submit -->
+            <button type="submit" class="btn btn-basic">Gerar gráfico</button>
+        </form>
+        <!-- \form -->
+        <!-- Mensagens de erro -->
+        {% if dic.error %}
+            <div class="alert alert-warning" role="alert">
+                <p> {{ dic.error }} </p>
+            </div>
+            <div class="alert alert-info" role="alert">
+                <p> Corrija o erro e gere o gráfico nova! </p>
+            </div>
+        {% endif %}
+        <!-- Informações da função -->
+        <div class="card bg-light">
+            <div class="card-header">
+                <h5 class="card-title text-center">Dados da função</h5>
+            </div>                
+            <div class="card-body">
+                f(x) = {{ dic.input_function }}
+                <br>Solução Real = {{ dic.function.solve_real }}
+            </div>
+        </div>
+    </div>
+    <!-- Grafico -->
+    <div class="col-8">
+        <div class="graph"></div>
+    </div>
+</div>
+
+<script>
+    var width_graph = det_width(7);
+    var height_graph = det_height(70);
+    $(window).resize(function() {
+        // Adicionar sempre que a tela for redimensionada
+        width_graph = det_width(7);
+        height_graph = $(window).height() * 70 / 100;
+        functionPlot() // erro aqui
+    });
+
+    
+    function det_width (colms){
+        // tamanho da tela * porcentagem que as colunas ocupam / 100
+        return ( $(window).width() * (colms * 100 / 12)) / 100;
+    }
+
+    function det_height (poercentage){
+        return $(window).height() * 70 / 100;
+    }
+    // https://mauriciopoppe.github.io/function-plot/
+    functionPlot({
+        width: width_graph,//det_width(7),
+        height: height_graph,//$(window).height() * 70 / 100,
+        target: '.graph',
+        //The little circle that has the x-coordinate of the mouse position is called a "tip", the following options can be configured:
+        tip: {
+            xLine: true,    // dashed line parallel to y = 0
+            yLine: true,    // dashed line parallel to x = 0
+            renderer: function (x, y, index) {
+            // the returning value will be shown in the tip
+            }
+        },
+        data: [
+                {
+                    fn: '{{ dic.function_graph }}',
+                    graphType: 'polyline', //permite uma maior complexidade de funções
+                }
+            ]
+        })
+</script>
+{% endblock %}
