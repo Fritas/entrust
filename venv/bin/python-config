@@ -1,4 +1,4 @@
-#!/home/aluno/entrust-ifc/flasky/venv/bin/python
+#!/home/aluno/Documentos/entrust/venv/bin/python
 
 import sys
 import getopt

@@ -109,27 +109,19 @@
 
 <script>
     var width_graph = det_width(7);
-    var height_graph = det_height(70);
-    $(window).resize(function() {
-        // Adicionar sempre que a tela for redimensionada
-        width_graph = det_width(7);
-        height_graph = $(window).height() * 70 / 100;
-        functionPlot() // erro aqui
-    });
-
-    
+    var height_graph = det_height(70);  
     function det_width (colms){
         // tamanho da tela * porcentagem que as colunas ocupam / 100
         return ( $(window).width() * (colms * 100 / 12)) / 100;
     }
 
-    function det_height (poercentage){
-        return $(window).height() * 70 / 100;
+    function det_height (percentage){
+        return $(window).height() * percentage / 100;
     }
     // https://mauriciopoppe.github.io/function-plot/
     functionPlot({
-        width: width_graph,//det_width(7),
-        height: height_graph,//$(window).height() * 70 / 100,
+        width: width_graph,
+        height: height_graph,
         target: '.graph',
         //The little circle that has the x-coordinate of the mouse position is called a "tip", the following options can be configured:
         tip: {
