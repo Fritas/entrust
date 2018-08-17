@@ -32,16 +32,16 @@
         <!-- form -->
         <form method="GET" class="form-group">
             <!-- Entrada de dados -->
-            <div class="card bg-light">
+            <div class="card border-success">
                 <!-- Entrada da função -->
-                <div class="card-header">
+                <div class="card-header text-white bg-success">
                     <h5 class="card-title text-center">Função</h5>
                 </div>
                 <div class="card-body">
                     <div class="input-group mb-3">
                         <!-- Input Function -->
                         <div class="input-group-prepend">
-                            <span class="input-group-text">f(x) =</span>
+                            <span class="input-group-text bg-success text-white">f(x) =</span>
                             <span>
                                 <input list="functions" id="input_function" type="text" class="form-control" name="input_function" placeholder='Entre com uma função' value="{{ dic.input_function }}">
                             </span>
@@ -60,7 +60,7 @@
                 </div>
                 <!-- Variáveis da função -->
                 {% if dic.function.dic_variables %}
-                    <div class="card-header">
+                    <div class="card-header bg-success text-white">
                         <h5 class="card-title text-center">Variáveis</h5> 
                     </div>               
                     <div class="card-body">
@@ -79,8 +79,9 @@
                     </div>
                 {% endif %}
             </div>
+            <br>
             <!-- submit -->
-            <button type="submit" class="btn btn-basic">Gerar gráfico</button>
+            <button type="submit" class="btn btn-success">Gerar gráfico</button>
         </form>
         <!-- \form -->
         <!-- Mensagens de erro -->
@@ -88,13 +89,13 @@
             <div class="alert alert-warning" role="alert">
                 <p> {{ dic.error }} </p>
             </div>
-            <div class="alert alert-info" role="alert">
+            <div class="alert alert-success" role="alert">
                 <p> Corrija o erro e gere o gráfico nova! </p>
             </div>
         {% endif %}
         <!-- Informações da função -->
-        <div class="card bg-light">
-            <div class="card-header">
+        <div class="card border-success">
+            <div class="card-header bg-success text-white">
                 <h5 class="card-title text-center">Dados da função</h5>
             </div>                
             <div class="card-body">
@@ -115,7 +116,6 @@
     function reloadGraph (){
         width_graph = det_width(7);
         height_graph = det_height(80);
-        alert(width_graph);
         function_plotar();
     }
     function det_width (colms){
@@ -132,6 +132,7 @@
             width: width_graph,
             height: height_graph,
             target: '.graph',
+            color: 'green',
             //The little circle that has the x-coordinate of the mouse position is called a "tip", the following options can be configured:
             tip: {
                 xLine: true,    // dashed line parallel to y = 0

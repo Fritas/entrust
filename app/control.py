@@ -48,5 +48,9 @@ def graph_function():
 def graph_linear_system():
     return render_template('graph_linear_system.html')
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='191.52.7.46')
