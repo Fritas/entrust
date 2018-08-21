@@ -53,4 +53,4 @@ def about():
     return render_template('about.html')
 
 if __name__ == '__main__':
-    app.run(debug=True, host='191.52.7.46')
+    app.run(debug=True)
