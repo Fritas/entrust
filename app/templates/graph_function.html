@@ -21,7 +21,7 @@
     <div class="col-1"></div>
     <ESC>
     <<div class="col-1">
-        <button class="btn btn-success hidden-show">Abrir/Fechar</button>
+        <button class="btn btn-info hidden-show">Abrir/Fechar</button>
     </div>
 </div> -->
 <div class="row container-fluid">
@@ -29,16 +29,16 @@
         <!-- form -->
         <form method="GET" class="form-group">
             <!-- Entrada de dados -->
-            <div class="card border-success">
+            <div class="card border-info">
                 <!-- Entrada da função -->
-                <div class="card-header text-white bg-success">
+                <div class="card-header text-white bg-info">
                     <h5 class="card-title text-center">Função</h5>
                 </div>
                 <div class="card-body">
                     <div class="input-group mb-3">
                         <!-- Input Function -->
                         <div class="input-group-prepend">
-                            <span class="input-group-text bg-success text-white">f(x) =</span>
+                            <span class="input-group-text bg-info text-white">f(x) =</span>
                             <span>
                                 <input list="functions" id="input_function" type="text" class="form-control" name="input_function" placeholder='Entre com uma função' value="{{ dic.input_function }}">
                             </span>
@@ -57,7 +57,7 @@
                 </div>
                 <!-- Variáveis da função -->
                 {% if dic.function.dic_variables %}
-                    <div class="card-header bg-success text-white">
+                    <div class="card-header bg-info text-white">
                         <h5 class="card-title text-center">Variáveis</h5> 
                     </div>               
                     <div class="card-body">
@@ -67,7 +67,7 @@
                                 {% for key in dic.function.dic_variables %}
                                     <!-- variavel individual -->
                                     <div class="input-group-prepend col-6">
-                                        <span class="input-group-text text-white bg-success" id={{ key }}>{{ key }}</span>
+                                        <span class="input-group-text text-white bg-info" id={{ key }}>{{ key }}</span>
                                         <span><input id={{ key }} type="number" step="any" class="form-control" aria-label="Small"  name={{ key }} value='{{ dic.function.dic_variables[key] }}'></span>
                                     </div>
                                 {% endfor %}
@@ -78,7 +78,7 @@
             </div>
             <br>
             <!-- submit -->
-            <button type="submit" class="btn btn-success">Gerar gráfico</button>
+            <button type="submit" class="btn btn-info">Gerar gráfico</button>
         </form>
         <!-- \form -->
         <!-- Mensagens de erro -->
@@ -86,13 +86,13 @@
             <div class="alert alert-warning" role="alert">
                 <p> {{ dic.error }} </p>
             </div>
-            <div class="alert alert-success" role="alert">
+            <div class="alert alert-info" role="alert">
                 <p> Corrija o erro e gere o gráfico nova! </p>
             </div>
         {% endif %}
         <!-- Informações da função -->
-        <div class="card border-success">
-            <div class="card-header bg-success text-white">
+        <div class="card border-info">
+            <div class="card-header bg-info text-white">
                 <h5 class="card-title text-center">Dados da função</h5>
             </div>                
             <div class="card-body">
@@ -108,20 +108,36 @@
 </div>
 
 <script>
-    var width_graph = det_width(7);
-    var height_graph = det_height(80);
+    var width_graph = det_width();
+    var height_graph = det_height();
+
     function reloadGraph (){
-        width_graph = det_width(7);
-        height_graph = det_height(80);
+        width_graph = det_width();
+        height_graph = det_height();
         function_plotar();
     }
-    function det_width (colms){
+    function det_width (){
         // tamanho da tela * porcentagem que as colunas ocupam / 100
-        return ( $(window).width() * (colms * 100) / 12) / 100;
+        var window_width = $(window).width();
+        if (window_width >= 1200) {
+            var colms = 8; //col-xl-8
+        } else if (window_width >= 992) {
+            var colms = 8; //col-lg-8
+        }
+        else if (window_width >= 768) {
+            var colms = 8; //col-md-8
+        }
+        else if (window_width >= 576) {
+            var colms = 12; //col-sm-12 
+        }
+        else if (window_width < 576) {
+            var colms = 12; //col-12
+        }
+        return (window_width * (colms * 100 / 12) / 100);
     }
 
-    function det_height (percentage){
-        return $(window).height() * percentage / 100;
+    function det_height() {
+        return $(window).height() *  70 / 100;
     }
     // https://mauriciopoppe.github.io/function-plot/
     function function_plotar(){

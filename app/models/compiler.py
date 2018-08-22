@@ -13,9 +13,9 @@ class StateError(Exception):
 
     def __str__(self):
         if self.previous_value:
-            return 'O símbolo "%s" não pode ocorrer após "%s"'\
+            return 'O símbolo "%s" não pode ocorrer após o símbolo "%s"'\
             %(self.actual_value, self.previous_value)
-        return ('A função não iniciar com o valor "%s".' %(self.actual_value))
+        return ('A função não pode iniciar com o valor "%s".' %(self.actual_value))
 
 class ValueNotAccepted(Exception):
 
@@ -51,7 +51,8 @@ class Compiler(object):
         (2,	3, 0, 5, 6, 0, 12, 9,  0,  14, 15),#13
         (2,	3, 4, 0, 0, 0, 13, 0,  11, 0,  0),#14
         (2,	3, 4, 5, 6, 0, 5,  0,  11, 14, 0),#15
-        )    
+        )
+ 
     dic_lines = {
             0 : 'erro',
             1 : 'inicio',
@@ -70,6 +71,7 @@ class Compiler(object):
             14 : 'modulo_final',
             15 : 'incognita',
         }
+
     dic_columns = {
             'final' : 0,
             'sinal' : 1,
@@ -101,7 +103,6 @@ class Compiler(object):
             'incognita' : ('x')
         }
     final_states = (2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16)
-    add_multiplication = False
     stack = Stack()
 
     def __init__(self, string):
@@ -114,6 +115,7 @@ class Compiler(object):
         self.token = str()
         self.error = str()
         self.string = str()
+        self.add_multiplication = False
         ######################################
         self.previous_state = 1
         self.previous_value = ''

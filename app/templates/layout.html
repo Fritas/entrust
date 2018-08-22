@@ -9,11 +9,20 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     {% block script %}{% endblock %}
+    <style>
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
 
 </head>
 <body>
     <!-- https://getbootstrap.com/docs/4.0/components/navbar/ -->
-    <nav class="navbar navbar-expand-lg navbar-success bg-success">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand text-white" href="/">Entrust</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,28 +46,28 @@
             </ul>
         </div>
     </nav>
-    <div class="row">
-        <br>
-    </div>
-    <section>
+
+    <!-- espaco apos o nav-->
+    <br>
+
+    <section class="container-fluid">
         {% block section %}{% endblock %}
     </section>
 
     <!-- Footer -->
     <footer>
-
-        <div class="row bg-success">
-            <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 bg-success text-white">
+        <div class="row text-center bg-secondary text-white">
+            <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 d-inline">
                 <img src="static/logo-ifc.png" style="background-color: white; margin:5px; border: 3px solid white" alt="Logo do IFC - Campus Blumenau." width="200" hight="100">
             </div>
             <!-- -->
-            <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 bg-success text-white text-center" style="padding:5px">
-                <p style="align-center"><br>© 2018 Copyright</p>
+            <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 d-inline" style="padding:5px">
+                <p style="align-center"><br>&copy 2018 Copyright</p>
             </div>
             <!-- Repositorios -->
-            <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 bg-success text-white text-center" >
+            <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 d-inline">
                 <a href="https://gitlab.blumenau.ifc.edu.br/Adriano/entrust" target="blank" style="color:white" >
-                    <img src="static/icon-gitlab.png" alt="Icone do Gitlab." width="40" hight="40" style="margin-top: 5px"><br>GitLab</a>
+                    <img src="static/logo-gitlab.png" alt="Icone do Gitlab." width="40" hight="40"><br>GitLab</a>
             </div>
         </div>
     </footer>
