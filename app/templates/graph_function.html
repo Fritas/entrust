@@ -3,7 +3,7 @@
 {% block script %}
     <script src="https://unpkg.com/d3@3/d3.min.js"></script>
     <script src="https://unpkg.com/function-plot@1/dist/function-plot.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <script>
         $(document).ready(function(){
             $(".hidden-show").click(function(){
@@ -15,20 +15,17 @@
     </script>
 {% endblock %}
 
-{% block body %}
+{% block section%}
+<body onresize="reloadGraph()" >
 <!--<div class="row">
     <div class="col-1"></div>
-    < ESC>
+    <ESC>
     <<div class="col-1">
-        <button class="btn btn-basic hidden-show">Abrir/Fechar</button>
+        <button class="btn btn-success hidden-show">Abrir/Fechar</button>
     </div>
 </div> -->
-<div class="row">
-    <br>
-</div>
-<div class="row">
-    <div class="col-1"></div>
-    <div class="col-3 lateral">        
+<div class="row container-fluid">
+    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 lateral">        
         <!-- form -->
         <form method="GET" class="form-group">
             <!-- Entrada de dados -->
@@ -70,7 +67,7 @@
                                 {% for key in dic.function.dic_variables %}
                                     <!-- variavel individual -->
                                     <div class="input-group-prepend col-6">
-                                        <span class="input-group-text" id={{ key }}>{{ key }}</span>
+                                        <span class="input-group-text text-white bg-success" id={{ key }}>{{ key }}</span>
                                         <span><input id={{ key }} type="number" step="any" class="form-control" aria-label="Small"  name={{ key }} value='{{ dic.function.dic_variables[key] }}'></span>
                                     </div>
                                 {% endfor %}
@@ -105,7 +102,7 @@
         </div>
     </div>
     <!-- Grafico -->
-    <div class="col-8">
+    <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
         <div class="graph"></div>
     </div>
 </div>
@@ -151,4 +148,5 @@
     }
     function_plotar();
 </script>
+</body>
 {% endblock %}

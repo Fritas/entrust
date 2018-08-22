@@ -42,6 +42,7 @@ def graph_function():
             dic_page['error'] = compiler.error
         #concatenar a string para o grafico    
         dic_page['function_graph'] = (compiler.compiler_function_web() %(compiler.dic_variables))
+        print(dic_page['function'].solve)
     return render_template('graph_function.html', dic=dic_page)
 
 @app.route('/linear_system', methods=['GET', 'POST'])
