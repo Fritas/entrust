@@ -19,8 +19,8 @@ class Function(object):
         self.coordinates = [[], []]
         self.solve = []
         self.solve_real = []
-        #if self.string:
-        #    self.update(dic_variables)
+        if self.string:
+            self.update(dic_variables)
 
     def define_begin_and_end(self):
         """ O metodo define begind e end caso o usuario nao informe """
@@ -72,13 +72,14 @@ class Function(object):
             if root.is_real:
                 self.solve_real.append(root)
 
-    def update(self, new_dic_variables):
+    def update(self, new_dic_variables, generate_coordinates=False):
         """O metodo atualiza os dados da funcao com base em novas variaveis e cria o objeto lambda"""
         self.dic_variables = new_dic_variables
         self.define_begin_and_end()
         self.fun_lamb = Lambda(Symbol('x'), self.string %(self.dic_variables))
         self.solve_function()
-        self.generate_coordinates()
+        if not generate_coordinates:
+            self.generate_coordinates()
 
     def get_string(self):
         return self.string %(self.dic_variables)
