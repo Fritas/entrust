@@ -1,0 +1,46 @@
+/* color */
+/* para escolher usar: 
+    http://paletton.com/#uid=52P1q0kllllK8hhuYnxbIj95Dpp 
+    https://color.adobe.com/pt/create/color-wheel
+*/
+    /* background */
+    .bg-blue-1 {
+        background-color: #00567F;
+    }
+    .bg-blue-2 {
+        background-color: #27627F;
+    }
+    .bg-blue-3 {
+        background-color: #3E9DCC;
+    }
+    .bg-blue-4 {
+        background-color: #4DC5FF;
+    }
+    .bg-blue-5 {
+        background-color: #9ADEFF;
+    }
+    /* border */
+    .border-blue-1 {
+        border-color: #00567F;
+    }
+    .border-blue-2 {
+        border-color: #27627F;
+    }
+    .border-blue-3 {
+        border-color: #3E9DCC;
+    }
+    .border-blue-4 {
+        border-color: #4DC5FF;
+    }
+    .border-blue-5 {
+        border-color: #9ADEFF;
+    }
+
+/* tags */
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}

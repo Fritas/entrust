@@ -3,7 +3,7 @@
 {% block script %}
     <script src="https://unpkg.com/d3@3/d3.min.js"></script>
     <script src="https://unpkg.com/function-plot@1/dist/function-plot.js"></script>
-
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
     <script>
         $(document).ready(function(){
             $(".hidden-show").click(function(){
@@ -29,16 +29,16 @@
         <!-- form -->
         <form method="GET" class="form-group">
             <!-- Entrada de dados -->
-            <div class="card border-info">
+            <div class="card border-blue-3">
                 <!-- Entrada da função -->
-                <div class="card-header text-white bg-info">
+                <div class="card-header text-white bg-blue-3">
                     <h5 class="card-title text-center">Função</h5>
                 </div>
                 <div class="card-body">
                     <div class="input-group mb-3">
                         <!-- Input Function -->
                         <div class="input-group-prepend">
-                            <span class="input-group-text bg-info text-white">f(x) =</span>
+                            <span class="input-group-text text-white">f(x) =</span>
                             <span>
                                 <input list="functions" id="input_function" type="text" class="form-control" name="input_function" placeholder='Entre com uma função' value="{{ dic.input_function }}">
                             </span>
@@ -57,7 +57,7 @@
                 </div>
                 <!-- Variáveis da função -->
                 {% if dic.function.dic_variables %}
-                    <div class="card-header bg-info text-white">
+                    <div class="card-header text-white bg-blue-3">
                         <h5 class="card-title text-center">Variáveis</h5> 
                     </div>               
                     <div class="card-body">
@@ -67,7 +67,7 @@
                                 {% for key in dic.function.dic_variables %}
                                     <!-- variavel individual -->
                                     <div class="input-group-prepend col-6">
-                                        <span class="input-group-text text-white bg-info" id={{ key }}>{{ key }}</span>
+                                        <span class="input-group-text text-white " id={{ key }}>{{ key }}</span>
                                         <span><input id={{ key }} type="number" step="any" class="form-control" aria-label="Small"  name={{ key }} value='{{ dic.function.dic_variables[key] }}'></span>
                                     </div>
                                 {% endfor %}
@@ -78,7 +78,7 @@
             </div>
             <br>
             <!-- submit -->
-            <button type="submit" class="btn btn-info">Gerar gráfico</button>
+            <button type="submit" class="btn ">Gerar gráfico</button>
         </form>
         <!-- \form -->
         <!-- Mensagens de erro -->
@@ -91,8 +91,8 @@
             </div>
         {% endif %}
         <!-- Informações da função -->
-        <div class="card border-info">
-            <div class="card-header bg-info text-white">
+        <div class="card border-blue-3">
+            <div class="card-header text-white bg-blue-3">
                 <h5 class="card-title text-center">Dados da função</h5>
             </div>                
             <div class="card-body">
