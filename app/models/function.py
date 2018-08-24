@@ -1,5 +1,6 @@
 from sympy import Lambda, solve, Symbol
 from models.compiler import Compiler
+#from compiler import Compiler
 
 class Function(object):
     """
@@ -69,7 +70,7 @@ class Function(object):
         except Exception as error:
             print('Error: ', error)
         for root in self.solve:
-            if root.is_real:
+            if root.is_real or type(root) is int or type(root) is float:
                 self.solve_real.append(root)
 
     def update(self, new_dic_variables, generate_coordinates=False):
@@ -89,7 +90,7 @@ class Function(object):
 
 if __name__ == '__main__':
     f = Function()
-    c = Compiler('x*|a|')
+    c = Compiler('x + 3')
     if c.valid:
         f = Function(
             string=c.string,
@@ -98,5 +99,5 @@ if __name__ == '__main__':
             )
         print('Solucao: ', f.solve)
         print('Solucao real: ', f.solve_real)
-        print('Coordendas: ', f.coordinates)
+        #print('Coordendas: ', f.coordinates)
         #print(f.coordinates[0][0], f.coordinates[0][-1])

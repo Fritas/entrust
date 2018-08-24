@@ -19,6 +19,10 @@
     .bg-blue-5 {
         background-color: #9ADEFF;
     }
+    .bg-yellow {
+        background-color: #E8E116;
+
+    }
     /* border */
     .border-blue-1 {
         border-color: #00567F;
@@ -35,12 +39,23 @@
     .border-blue-5 {
         border-color: #9ADEFF;
     }
-
+    .border-black {
+        border-bottom-color: black;
+    }
 /* tags */
-.footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
+/* aplicado caso a tela seja maior que 600px*/
+@media (min-width: 600px){
+    .footer {
+        bottom: 0;
+        left: 0;
+        position: fixed;
+        width: 100%;
+    }
+  }
+.justify {
+    text-align:justify;
+}
+/* block */
+#block{
+    padding: 5px;
 }

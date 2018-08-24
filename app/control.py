@@ -19,7 +19,6 @@ def graph_function():
     }
     # se nao ter o que requisitar eh recebido None
     input_function = request.args.get('input_function')
-
     if input_function:
         dic_page['input_function'] = input_function
         try:
@@ -32,17 +31,23 @@ def graph_function():
                 valor = request.args.get(variable)
                 if valor:
                     compiler.dic_variables[variable] = valor
+            print()
+            print()
+            print()
+            print('Dic compiler', compiler.dic_variables)
             #criar funcao
             try:
                 dic_page['function'] = Function(compiler.string,
                                                 compiler.dic_variables)
             except Exception as error:
                 print('Error: ', error)
+            print('Dic function: ', dic_page['function'].dic_variables)
         else:
             dic_page['error'] = compiler.error
         #concatenar a string para o grafico    
-        dic_page['function_graph'] = (compiler.compiler_function_web() %(compiler.dic_variables))
+        dic_page['function_graph'] = (compiler.string_web %(compiler.dic_variables))
         print(dic_page['function'].solve)
+        print(dic_page['function'].solve_real)
     return render_template('graph_function.html', dic=dic_page)
 
 @app.route('/linear_system', methods=['GET', 'POST'])

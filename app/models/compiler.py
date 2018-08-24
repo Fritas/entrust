@@ -1,4 +1,5 @@
 from models.stack import Stack
+#from stack import Stack
 
 class MathException(Exception):
     pass
@@ -12,10 +13,14 @@ class StateError(Exception):
         print(self)
 
     def __str__(self):
-        if self.previous_value:
-            return 'O símbolo "%s" não pode ocorrer após o símbolo "%s"'\
+        if self.actual_value == "@":
+                return ('A função não pode termincar com o valor "%s".' \
+                %(self.actual_value))
+        elif self.previous_value:
+            return 'O símbolo "%s" não pode ocorrer após o símbolo "%s".'\
             %(self.actual_value, self.previous_value)
-        return ('A função não pode iniciar com o valor "%s".' %(self.actual_value))
+        
+        return ('A função não pode começar com o valor "%s".' %(self.actual_value))
 
 class ValueNotAccepted(Exception):
 
@@ -126,7 +131,8 @@ class Compiler(object):
             self.manage_stack()
             self.previous_state = self.actual_state
             self.previous_value = self.value
-        self.compiler_function()
+        self.compiler_function() #criar uma string para o sympy
+        self.compiler_function_web() #criar uma string para a web
         if not self.error:
             self.valid = True
         else:
@@ -256,7 +262,7 @@ class Compiler(object):
         Este metodo eh o responsavel final do compilador, ele ira concatenar a string da funcao e um dicionario
         para a mesma, que permite a troca dos coeficietnes pelos valores informados no dicionario para o python
         """
-        string = ''
+        self.string_web = ''
         if not self.error: #caso nao tenha erro
             for token in self.lista_tokens:
                 value = token[1]
@@ -267,8 +273,7 @@ class Compiler(object):
                 elif token[0] == 'variavel':
                     value = '%(' + token[1] + ')s'
                     self.dic_variables[token[1]] = 1
-                string += value
-        return string
+                self.string_web += value
 
 if __name__ == '__main__':
     c = Compiler('|A|')
