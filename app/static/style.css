@@ -43,15 +43,12 @@
         border-bottom-color: black;
     }
 /* tags */
-/* aplicado caso a tela seja maior que 600px*/
-@media (min-width: 600px){
-    .footer {
-        bottom: 0;
-        left: 0;
-        position: fixed;
-        width: 100%;
-    }
-  }
+ html{
+    height: 100%;
+ }
+ body {
+    min-height: 100%;
+ }
 .justify {
     text-align:justify;
 }
