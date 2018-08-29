@@ -57,7 +57,6 @@ class Compiler(object):
         (2,	3, 4, 0, 0, 0, 13, 0,  11, 0,  0),#14
         (2,	3, 4, 5, 6, 0, 5,  0,  11, 14, 0),#15
         )
- 
     dic_lines = {
             0 : 'erro',
             1 : 'inicio',
@@ -70,13 +69,12 @@ class Compiler(object):
             8 : 'numero_float',
             9 : 'parenteses_inicio',
             10 : 'parenteses_inicio',
-            11 : 'parenteses_final',
-            12 : 'modulo_inicial',
-            13 : 'modulo_inicial',
-            14 : 'modulo_final',
+            11 : 'parenteses_fim',
+            12 : 'modulo_inicio',
+            13 : 'modulo_inicio',
+            14 : 'modulo_fim',
             15 : 'incognita',
         }
-
     dic_columns = {
             'final' : 0,
             'sinal' : 1,
@@ -266,9 +264,9 @@ class Compiler(object):
         if not self.error: #caso nao tenha erro
             for token in self.lista_tokens:
                 value = token[1]
-                if token[0] == 'modulo_inicial':
+                if token[0] == 'modulo_inicio':
                     value = 'abs('
-                elif token[0] == 'modulo_final':
+                elif token[0] == 'modulo_fim':
                     value = ')'
                 elif token[0] == 'variavel':
                     value = '%(' + token[1] + ')s'
@@ -276,8 +274,9 @@ class Compiler(object):
                 self.string_web += value
 
 if __name__ == '__main__':
-    c = Compiler('|A|')
+    c = Compiler('ax^2')
     print('Validade: ', c.valid)
     print('Lista de tokens: ', c.lista_tokens)
+    print('Dic', c.dic_variables)
     print('String: ', c.string)
     print('String: ', c.string %(c.dic_variables))

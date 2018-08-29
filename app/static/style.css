@@ -21,7 +21,6 @@
     }
     .bg-yellow {
         background-color: #E8E116;
-
     }
     /* border */
     .border-blue-1 {
@@ -40,7 +39,10 @@
         border-color: #9ADEFF;
     }
     .border-black {
-        border-bottom-color: black;
+        border-color: black;
+    }
+    .border-yellow {
+        border-color: #E8E116;
     }
 /* tags */
  html{

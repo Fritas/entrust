@@ -14,8 +14,10 @@ def graph_function():
     dic_page = {
         'input_function': '',
         'function' : Function(),
+        'variables' : dict(),
         'error': '',
         'function_graph' : '',
+        'solve_real' : list()
     }
     # se nao ter o que requisitar eh recebido None
     input_function = request.args.get('input_function')
@@ -31,23 +33,20 @@ def graph_function():
                 valor = request.args.get(variable)
                 if valor:
                     compiler.dic_variables[variable] = valor
-            print()
-            print()
-            print()
-            print('Dic compiler', compiler.dic_variables)
             #criar funcao
             try:
-                dic_page['function'] = Function(compiler.string,
+                function = Function(compiler.string,
                                                 compiler.dic_variables)
+                dic_page['solve_real'] = function.solve_real()
+                dic_page['variables'] = functiosn.dic_variables
             except Exception as error:
                 print('Error: ', error)
-            print('Dic function: ', dic_page['function'].dic_variables)
+                dic_page['variables'] = compiler.dic_variables
+            
         else:
             dic_page['error'] = compiler.error
         #concatenar a string para o grafico    
         dic_page['function_graph'] = (compiler.string_web %(compiler.dic_variables))
-        print(dic_page['function'].solve)
-        print(dic_page['function'].solve_real)
     return render_template('graph_function.html', dic=dic_page)
 
 @app.route('/linear_system', methods=['GET', 'POST'])
@@ -57,6 +56,16 @@ def graph_linear_system():
 @app.route('/about')
 def about():
     return render_template('about.html')
+
+@app.errorhandler(500)
+def page_not_found(e):
+    return render_template('error.html',\
+     mensagem='Tivemos um erro que em breve será corrigido. Agradecemos a paciencia!')
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('error.html',\
+     mensagem='O URL informado não condiz com nenhuma das nossas páginas. Por favor retorne a página inicial!')
 
 if __name__ == '__main__':
     app.run(debug=True)#, host="191.52.7.33")
