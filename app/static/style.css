@@ -3,58 +3,72 @@
     http://paletton.com/#uid=52P1q0kllllK8hhuYnxbIj95Dpp 
     https://color.adobe.com/pt/create/color-wheel
 */
+    /* COLORS: rgb(0, 86, 127) rgb(76, 197, 255) rgb(0, 173, 255) rgb(38, 99, 127) rgb(0, 130, 204)*/
     /* background */
     .bg-blue-1 {
-        background-color: #00567F;
+        background-color: rgb(0, 86, 127); /* NAV FOOTER*/
     }
     .bg-blue-2 {
-        background-color: #27627F;
+        background-color: rgb(76, 197, 255);
     }
     .bg-blue-3 {
-        background-color: #3E9DCC;
+        background-color: rgb(0, 173, 255);
     }
     .bg-blue-4 {
-        background-color: #4DC5FF;
+        background-color: rgb(38, 99, 127); 
     }
     .bg-blue-5 {
-        background-color: #9ADEFF;
+        background-color: rgb(0, 130, 204);
     }
     .bg-yellow {
-        background-color: #E8E116;
+        background-color: #FFF718;
     }
+
     /* border */
     .border-blue-1 {
-        border-color: #00567F;
+        border-color: rgb(0, 86, 127); /* NAV FOOTER*/
     }
     .border-blue-2 {
-        border-color: #27627F;
+        border-color: rgb(76, 197, 255);
     }
     .border-blue-3 {
-        border-color: #3E9DCC;
+        border-color: rgb(0, 173, 255);
     }
     .border-blue-4 {
-        border-color: #4DC5FF;
+        border-color: rgb(38, 99, 127); 
     }
     .border-blue-5 {
-        border-color: #9ADEFF;
+        border-color: rgb(0, 130, 204); 
     }
-    .border-black {
-        border-color: black;
+
+
+    /* DYNAMIC */
+    @media (min-width: 576px){
+        #bottom-dynamic{
+            visibility: hidden;
+        }
     }
-    .border-yellow {
-        border-color: #E8E116;
+    @media (max-width: 576px){
+        #bottom-dynamic{
+            visibility: show;
+        }
     }
-/* tags */
- html{
-    height: 100%;
- }
- body {
-    min-height: 100%;
- }
-.justify {
-    text-align:justify;
-}
-/* block */
-#block{
-    padding: 5px;
-}
+    /* tags */
+    html{
+        height: 100%;
+    }
+    body {
+        min-height: 100%;
+    }
+    nav {
+        margin-bottom: 10px;
+    }
+    .justify {
+        text-align:justify;
+    }
+
+    /* block */
+    #block{
+        padding: 5px;
+    }
+    

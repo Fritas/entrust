@@ -15,7 +15,7 @@ class StateError(Exception):
     def __str__(self):
         if self.actual_value == "@":
                 return ('A função não pode termincar com o valor "%s".' \
-                %(self.actual_value))
+                %(self.previous_value))
         elif self.previous_value:
             return 'O símbolo "%s" não pode ocorrer após o símbolo "%s".'\
             %(self.actual_value, self.previous_value)

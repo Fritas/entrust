@@ -17,86 +17,86 @@
 
 {% block section%}
 <body onresize="reloadGraph()">
-<!--<div class="row container-fluid">
-    <div class="col-1">
-        <button class="btn bg-blue-3 hidden-show" style="margin-bottom: 5px">Abrir/Fechar Informações</button>
-    </div>
-</div>-->
-<div class="row container-fluid">
-    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 lateral">        
-        <!-- form -->
-        <form method="GET" class="form-group">
-            <!-- Entrada de dados -->
-            <div class="card border-blue-2">
-                <!-- Entrada da função -->
-                <div class="card-header text-white bg-blue-2">
-                    <h5 class="card-title text-center">Função</h5>
-                </div>
-                <div class="card-body">
-                    <div class="input-group mb-3">
-                        <!-- Input Function -->
-                        <div class="input-group-prepend">
-                            <span class="input-group-text text-white bg-blue-3">f(x) =</span>
-                            <span>
-                                <input list="functions" id="input_function" type="text" class="form-control" name="input_function" placeholder='Entre com uma função' value="{{ dic.input_function }}">
-                            </span>
-                            <!-- https://www.w3schools.com/html/tryit.asp?filename=tryhtml_elem_datalist -->
-                            <datalist id="functions">"",
-                                <option value='ax + b'>ax + b</option>
-                                <option value='ax^2 + bx + c'>ax^2 + bx + c</option>
-                                <option value='ax^3 + bx^2 + cx + d'>ax^3 + bx^2 + cx + d</option>
-                                <option value='ax^4 + bx^3 + cx^2 + dx + e'>ax^4 + bx^3 + cx^2 + dx + e</option>
-                            </datalist>
-                        </div>
-                    </div>
-                            <!-- Mensagens de erro -->
-        {% if dic.error %}
-        <div class="alert bg-yellow" role="alert">
-            <p> {{ dic.error }} </p>
+    <div class="row container-fluid" >
+        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+            <button class="btn hidden-show text-white bg-blue-3 " id="bottom-dynamic"style="margin-bottom: 5px">Abrir/Fechar Informações</button>
         </div>
-    {% endif %}
-                </div>
-                <!-- Variáveis da função -->
-                {% if dic.variables %}
-                    <div class="card-header text-white bg-blue-2">
-                        <h5 class="card-title text-center">Variáveis</h5> 
-                    </div>               
+    </div>
+    <div class="row container-fluid">
+        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 lateral">
+            <!-- form -->
+            <form method="GET" class="form-group">
+                <!-- Entrada de dados -->
+                <div class="card border-blue-5">
+                    <!-- Entrada da função -->
+                    <div class="card-header text-white bg-blue-5">
+                        <h5 class="card-title text-center">Função</h5>
+                    </div>
                     <div class="card-body">
                         <div class="input-group">
-                            <!-- Linha: Input Variables -->
-                            <div class="form-row">
-                                {% for key in dic.variables %}
-                                    <!-- variavel individual -->
-                                    <div class="input-group-prepend col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                                        <span class="input-group-text text-white bg-blue-3" id={{ key }}>{{ key }}</span>
-                                        <span><input id={{ key }} type="number" step="any" class="form-control" aria-label="Small"  name={{ key }} value='{{ dic.variables[key] }}'></span>
-                                    </div>
-                                {% endfor %}
+                            <!-- Input Function -->
+                            <div class="input-group-prepend">
+                                <span class="input-group-text text-white bg-blue-3">f(x) =</span>
+                                <span>
+                                    <input list="functions" id="input_function" type="text" class="form-control" name="input_function" placeholder='Entre com uma função' value="{{ dic.input_function }}">
+                                </span>
+                                <!-- https://www.w3schools.com/html/tryit.asp?filename=tryhtml_elem_datalist -->
+                                <datalist id="functions">
+                                    <option value='ax + b'>ax + b</option>
+                                    <option value='ax^2 + bx + c'>ax^2 + bx + c</option>
+                                    <option value='ax^3 + bx^2 + cx + d'>ax^3 + bx^2 + cx + d</option>
+                                    <option value='ax^4 + bx^3 + cx^2 + dx + e'>ax^4 + bx^3 + cx^2 + dx + e</option>
+                                </datalist>
                             </div>
                         </div>
+                    <!-- Mensagens de erro -->
+                    {% if dic.error %}
+                    <div class="alert bg-yellow" style="background-color: #FFF718" role="alert">
+                        <p> {{ dic.error }} </p>
+                    </div>    
+                    {% endif %}
                     </div>
-                {% endif %}
-            </div>
-            <!-- submit -->
-            <button type="submit" class="btn bg-blue-3 text-white" style="margin-top: 5px">Gerar gráfico</button>
-        </form>
-        <!-- \form -->
-        <!-- Informações da função -->
-        <div class="card border-blue-2">
-            <div class="card-header text-white bg-blue-2">
-                <h5 class="card-title text-center">Dados da função</h5>
-            </div>                
-            <div class="card-body">
-                f(x) = {{ dic.input_function }}
-                <br>Solução Real = {{ dic.solve_real }}
+                    <!-- Variáveis da função -->
+                    {% if dic.variables %}
+                        <div class="card-header text-white bg-blue-5">
+                            <h5 class="card-title text-center">Variáveis</h5> 
+                        </div>               
+                        <div class="card-body">
+                            <div class="input-group">
+                                <!-- Linha: Input Variables -->
+                                <div class="form-row">
+                                    {% for key in dic.variables %}
+                                        <!-- variavel individual -->
+                                        <div class="input-group-prepend col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                            <span class="input-group-text text-white bg-blue-3" id={{ key }}>{{ key }}</span>
+                                            <span><input id={{ key }} type="number" step="any" class="form-control" aria-label="Small"  name={{ key }} value='{{ dic.variables[key] }}'></span>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+                <!-- submit -->
+                <button type="submit" class="btn text-white bg-blue-3" style="margin-top: 5px">Gerar gráfico</button>
+            </form>
+            <!-- \form -->
+            <!-- Informações da função -->
+            <div class="card border-blue-5">
+                <div class="card-header text-white bg-blue-5">
+                    <h5 class="card-title text-center">Dados da função</h5>
+                </div>                
+                <div class="card-body">
+                    f(x) = {{ dic.input_function }}
+                    <br>Solução Real = {{ dic.solve_real }}
+                </div>
             </div>
         </div>
+        <!-- Grafico -->
+        <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+            <div class="graph" style="margin-top: 5px"></div>
+        </div>
     </div>
-    <!-- Grafico -->
-    <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
-        <div class="graph" style="margin-top: 5px"></div>
-    </div>
-</div>
 
 <script>
     var width_graph = det_width();
