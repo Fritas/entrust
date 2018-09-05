@@ -1,4 +1,4 @@
-from .stack import Stack
+from stack import Stack
 
 class MathException(Exception):
     pass
@@ -37,7 +37,7 @@ class EmptyStack(Exception):
         print(self)
 
     def __str__(self):
-        return ('Algum parênteses/módulo foi aberto e não foi fechado!')
+        return ('Algum parênteses/módulo foi aberto e não foi fechado corretamente!')
 
 class Compiler(object):
     """
@@ -65,52 +65,52 @@ class Compiler(object):
         (2,	3, 4, 5, 6, 0, 5,  0,  11, 14, 0),#15
         )
     dic_lines = {
-            0 : 'erro',
-            1 : 'inicio',
-            2 : 'final',
-            3 : 'sinal',
-            4 : 'operador',
-            5 : 'variavel',
-            6 : 'numero_int',
-            7 : 'ponto',
-            8 : 'numero_float',
-            9 : 'parenteses_inicio',
-            10 : 'parenteses_inicio',
-            11 : 'parenteses_fim',
-            12 : 'modulo_inicio',
-            13 : 'modulo_inicio',
-            14 : 'modulo_fim',
-            15 : 'incognita',
+            0 : 'error',
+            1 : 'start',
+            2 : 'last',
+            3 : 'end',
+            4 : 'operator',
+            5 : 'variable',
+            6 : 'number_int',
+            7 : 'point',
+            8 : 'number_float',
+            9 : 'parentheses_start',
+            10 : 'parentheses_start',
+            11 : 'parentheses_end',
+            12 : 'module_start',
+            13 : 'module_start',
+            14 : 'module_end',
+            15 : 'unknown ',
         }
     dic_columns = {
-            'final' : 0,
-            'sinal' : 1,
-            'operador' : 2,
-            'variavel' : 3,
-            'numero' : 4,
-            'ponto' : 5,
-            'vazio' : 6,
-            'parenteses_inicio'  : 7,
-            'parenteses_final'  : 8,
-            'modulo' : 9,
-            'incognita' : 10,
+            'end' : 0,
+            'signal' : 1,
+            'operator' : 2,
+            'variable' : 3,
+            'number' : 4,
+            'point' : 5,
+            'empty' : 6,
+            'parentheses_start'  : 7,
+            'parentheses_end'  : 8,
+            'module' : 9,
+            'unknown' : 10,
         }
     dic_types = {
-            'final': ('@', ),
-            'sinal' : ('+', '-'),
-            'operador' : ('/', '*', '^'),
-            'variavel' : ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h','i', 'j',
+            'end': ('@', ),
+            'signal' : ('+', '-'),
+            'operator' : ('/', '*', '^'),
+            'variable' : ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h','i', 'j',
                           'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
                           'u', 'v', 'w', 'y', 'z', 'A', 'B', 'C', 'D', 'E',
                           'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
                           'P', 'Q', 'R', 'S', 'T','U','V','W', 'X', 'Y', 'Z'),
-            'numero' : ('0', '1', '2', '3', '4', '5', '6', '7', '8', '9'),
-            'ponto' : ('.', ), 
-            'vazio' : (' ', ''),
-            'parenteses_inicio' : ('(', ),
-            'parenteses_final' : (')', ),
-            'modulo' : ('|', ),
-            'incognita' : ('x')
+            'number' : ('0', '1', '2', '3', '4', '5', '6', '7', '8', '9'),
+            'point' : ('.', ), 
+            'empty' : (' ', ''),
+            'parentheses_start' : ('(', ),
+            'parentheses_end' : (')', ),
+            'module' : ('|', ),
+            'unknown' : ('x')
         }
     final_states = (2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16)
     stack = Stack()
@@ -143,6 +143,9 @@ class Compiler(object):
         self.compiler_function_web() #criar uma string para a web
 
     def valid_function(self):
+        """
+        O metodo valid_function eh responsável por validar a função
+        """
         try:
             if not self.stack.isEmpty():
                 raise EmptyStack()
@@ -247,7 +250,7 @@ class Compiler(object):
             self.token = ''
         #adicionar token por causa de excecao
         if self.add_multiplication:
-            self.lista_tokens.append(('operador', '*'))
+            self.lista_tokens.append(('operator', '*'))
             self.add_multiplication = not self.add_multiplication
         self.token += self.value
 
@@ -260,13 +263,13 @@ class Compiler(object):
         if not self.error: #caso nao tenha erro
             for token in self.lista_tokens:
                 value = token[1]
-                if token[0] == 'modulo_inicial':
+                if token[0] == 'module_start':
                     value = 'abs('
-                elif token[0] == 'modulo_final':
+                elif token[0] == 'module_end':
                     value = ')'
-                elif token[0] == 'operador' and value == '^':
+                elif token[0] == 'operator' and value == '^':
                     value = '**'
-                elif token[0] == 'variavel':
+                elif token[0] == 'variable':
                     value = '%(' + token[1] + ')s'
                     self.dic_variables[token[1]] = 1
                 self.string += value
@@ -281,11 +284,11 @@ class Compiler(object):
         if not self.error: #caso nao tenha erro
             for token in self.lista_tokens:
                 value = token[1]
-                if token[0] == 'modulo_inicio':
+                if token[0] == 'module_start':
                     value = 'abs('
-                elif token[0] == 'modulo_fim':
+                elif token[0] == 'module_end':
                     value = ')'
-                elif token[0] == 'variavel':
+                elif token[0] == 'variable':
                     value = '%(' + token[1] + ')s'
                     self.dic_variables[token[1]] = 1
                 self.string_web += value
