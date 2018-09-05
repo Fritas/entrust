@@ -8,8 +8,15 @@
     <script src="/static/function_plot.js"></script>
     <script>
         $(document).ready(function(){
-            $(".hidden-show").click(function(){
-                $(".lateral").animate({
+            $(".toggler-function").click(function(){
+                $(".toggler-button-function").animate({
+                    height: 'toggle'
+                });
+            });
+        });
+        $(document).ready(function(){
+            $(".toggler-function_data").click(function(){
+                $("#toggler-button-function_data").animate({
                     height: 'toggle'
                 });
             });
@@ -19,22 +26,19 @@
 
 {% block section%}
 <body onresize="reloadGraph()">
-    <div class="row container-fluid" >
-        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-            <button class="btn hidden-show text-white bg-blue-3 " id="bottom-dynamic"style="margin-bottom: 5px">Abrir/Fechar Informações</button>
-        </div>
-    </div>
     <div class="row container-fluid">
-        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 lateral">
+        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 cards">
             <!-- form -->
             <form method="GET" class="form-group">
                 <!-- Entrada de dados -->
                 <div class="card border-blue-5">
                     <!-- Entrada da função -->
                     <div class="card-header text-white bg-blue-5">
-                        <h5 class="card-title text-center">Função</h5>
+                        <h5 class="card-title text-center">Função
+                            <button type = "button" class="btn toggler-function text-white bg-blue-5 navbar-dark" id="bottom-dynamic" style="margin-bottom: 5px"><span class="navbar-toggler-icon"></span></button><!-- navbar-toggler-icon é um icon do boostrap -->    
+                        </h5>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body toggler-button-function">
                         <div class="input-group">
                             <!-- Input Function -->
                             <div class="input-group-prepend">
@@ -60,10 +64,10 @@
                     </div>
                     <!-- Variáveis da função -->
                     {% if dic.variables %}
-                        <div class="card-header text-white bg-blue-5">
+                        <div class="card-header text-white bg-blue-5 toggler-button-function">
                             <h5 class="card-title text-center">Variáveis</h5> 
                         </div>               
-                        <div class="card-body">
+                        <div class="card-body toggler-button-function">
                             <div class="input-group">
                                 <!-- Linha: Input Variables -->
                                 <div class="form-row">
@@ -80,15 +84,18 @@
                     {% endif %}
                 </div>
                 <!-- submit -->
-                <button type="submit" class="btn text-white bg-blue-3" style="margin-top: 5px">Gerar gráfico</button>
+                <button class="btn text-white bg-blue-3 toggler-button-function" style="margin-top: 5px" type="submit">Gerar gráfico</button>
             </form>
             <!-- \form -->
+
             <!-- Informações da função -->
             <div class="card border-blue-5">
                 <div class="card-header text-white bg-blue-5">
-                    <h5 class="card-title text-center">Dados da função</h5>
+                    <h5 class="card-title text-center">Dados da função
+                            <button type = "button" class="btn toggler-function_data text-white bg-blue-5 navbar-dark" id="bottom-dynamic" style="margin-bottom: 5px"><span class="navbar-toggler-icon"></span></button><!-- navbar-toggler-icon é um icon do boostrap -->
+                    </h5>
                 </div>                
-                <div class="card-body">
+                <div class="card-body" id="toggler-button-function_data">
                     f(x) = {{ dic.input_function }}
                     <br>Solução Real = {{ dic.solve_real }}
                 </div>
