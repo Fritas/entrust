@@ -25,7 +25,7 @@ def graph_function():
         try:
             compiler = Compiler(input_function)
         except Exception as error:
-            print('\n\nError: ', error)
+            print('\n\nControl Error: ', error)
         if compiler.valid: #se compilador eh valido
             #requisitar variveis via get, caso eles ja estejam expressos pelo usuario anteriormente
             for variable in compiler.dic_variables:
@@ -36,12 +36,11 @@ def graph_function():
             try:
                 function = Function(compiler.string,
                                                 compiler.dic_variables)
-                dic_page['solve_real'] = function.solve_real()
-                dic_page['variables'] = functiosn.dic_variables
+                dic_page['solve_real'] = function.solve_real
+                dic_page['variables'] = function.dic_variables
             except Exception as error:
-                print('Error: ', error)
+                print('\n\nControl Error: ', error)
                 dic_page['variables'] = compiler.dic_variables
-            
         else:
             dic_page['error'] = compiler.error
         #concatenar a string para o grafico    
