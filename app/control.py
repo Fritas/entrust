@@ -13,7 +13,6 @@ def graph_function():
     """"Este metodo renderiza a pagina de grafico do site"""
     dic_page = {
         'input_function': '',
-        'function' : Function(),
         'variables' : dict(),
         'error': '',
         'function_graph' : '',
