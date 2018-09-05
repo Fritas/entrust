@@ -1,5 +1,4 @@
-from models.stack import Stack
-#from stack import Stack
+from .stack import Stack
 
 class MathException(Exception):
     pass
@@ -31,6 +30,14 @@ class ValueNotAccepted(Exception):
 
     def __str__(self):
         return ('O caracter "%s" não é aceito pelo sistema!' %(self.value))
+
+class EmptyStack(Exception):
+
+    def __init__(self):
+        print(self)
+
+    def __str__(self):
+        return ('Algum parênteses/módulo foi aberto e não foi fechado!')
 
 class Compiler(object):
     """
@@ -109,9 +116,11 @@ class Compiler(object):
     stack = Stack()
 
     def __init__(self, string):
-        """O metodo __init__ inicializa o compilador com base em uma string """
+        """
+        O metodo __init__ inicializa o compilador com base em uma string
+        """
         #retirar vazios e adicionar simbolo final
-        funcao = string.replace(' ', '') + '@'
+        function = string.replace(' ', '') + '@'
         #atributos particulares em cada objeto
         self.lista_tokens = list() 
         self.dic_variables = dict()
@@ -122,15 +131,23 @@ class Compiler(object):
         ######################################
         self.previous_state = 1
         self.previous_value = ''
-        for self.value in funcao: #verificar o self do for
+        for self.value in function: #verificar o self do for
             if not self.manage_state_machine(): #caso nao tenha erro em estado
                 break
             self.manage_token()
             self.manage_stack()
             self.previous_state = self.actual_state
             self.previous_value = self.value
+        self.valid_function()
         self.compiler_function() #criar uma string para o sympy
         self.compiler_function_web() #criar uma string para a web
+
+    def valid_function(self):
+        try:
+            if not self.stack.isEmpty():
+                raise EmptyStack()
+        except EmptyStack as error:
+            self.error = error
         if not self.error:
             self.valid = True
         else:
@@ -274,9 +291,10 @@ class Compiler(object):
                 self.string_web += value
 
 if __name__ == '__main__':
-    c = Compiler('ax^2')
+    c = Compiler('(ax^|2|) + |')
     print('Validade: ', c.valid)
     print('Lista de tokens: ', c.lista_tokens)
     print('Dic', c.dic_variables)
     print('String: ', c.string)
     print('String: ', c.string %(c.dic_variables))
+    print('Error: ', c.error)
