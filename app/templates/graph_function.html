@@ -5,7 +5,7 @@
     <script src="https://unpkg.com/function-plot@1/dist/function-plot.js"></script>
     <!-- LINKS INTERNOS-->
     <link rel="stylesheet" type="text/css" href="/static/style.css">
-    <script src="/static/function_plot.js"></script>
+    <script type="text/javascript" src="/static/function_plot.js"></script>
     <script>
         $(document).ready(function(){
             $(".toggler-function").click(function(){
@@ -25,7 +25,7 @@
 {% endblock %}
 
 {% block section%}
-<body onresize="reloadGraph()">
+<body onresize="reloadGraph()" onload="reloadGraph()">
     <div class="row container-fluid">
         <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 cards">
             <!-- form -->
@@ -108,6 +108,12 @@
     </div>
     <!-- Executar o código JavaScript 
     O JS não reconhece as variáveis do Flask em arquivo externo-->
-    <script>function_plotar('{{ dic.function_graph }}');</script>
+    <script>
+        function reloadGraph(){
+            width_graph = det_width();
+            height_graph = det_height();
+            function_plotar('{{ dic.function_graph }}');
+        }
+    </script>
 </body>
 {% endblock %}

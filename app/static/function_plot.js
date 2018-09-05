@@ -43,12 +43,6 @@ function det_height() {
     return $(window).height() *  percentage  / 100;
 }
 
-function reloadGraph (){
-    width_graph = det_width();
-    height_graph = det_height();
-    function_plotar();
-}
-
 // https://mauriciopoppe.github.io/function-plot/
 function function_plotar(function_graph){
     functionPlot({
