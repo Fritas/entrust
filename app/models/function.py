@@ -1,6 +1,6 @@
-from sympy import Lambda, solve, Symbol
-from models.compiler import Compiler
-#from compiler import Compiler
+#from sympy import Lambda, solve, Symbol
+from sympy import Lambda,  Symbol, S, solveset
+from sympy.abc import x
 
 class Function(object):
     """
@@ -24,7 +24,9 @@ class Function(object):
             self.update(dic_variables)
 
     def define_begin_and_end(self):
-        """ O metodo define begind e end caso o usuario nao informe """
+        """
+        O metodo define begind e end caso o usuario nao informe
+        """
         #se ambos os valores forem zero
         if not self.begin and not self.end:
             if len(self.solve) > 1:
@@ -40,7 +42,9 @@ class Function(object):
             self.begin, self.end = self.end, self.begin
 
     def generate_coordinates(self):
-        """ O metodo gera as coordenadas para o grafico """
+        """
+        O metodo gera as coordenadas para o grafico
+        """
         addtion = abs(self.begin - self.end) / self.pixels
         count = 0
         limit = self.pixels * 2
@@ -61,20 +65,22 @@ class Function(object):
             x += addtion
 
     def solve_function(self):
-        """ O metodo determina a solucao da funcao """
+        """
+        O metodo determina a solucao da funcao
+        """
         #http://docs.sympy.org/latest/modules/solvers/solvers.html
         #http://docs.sympy.org/latest/modules/solvers/solveset.html
         try:
-            self.solve = solve(self.string %(self.dic_variables),
-                            x = Symbol('x'))
+            funcao = self.string %(self.dic_variables)
+            self.solve = solveset(funcao, x)
+            self.solve_real = solveset(funcao, x, domain=S.Reals)
         except Exception as error:
-            print('Error: ', error)
-        for root in self.solve:
-            if root.is_real or type(root) is int or type(root) is float:
-                self.solve_real.append(root)
+            print('Function Error: ', error)
 
     def update(self, new_dic_variables, generate_coordinates=False):
-        """O metodo atualiza os dados da funcao com base em novas variaveis e cria o objeto lambda"""
+        """
+        O metodo atualiza os dados da funcao com base em novas variaveis e cria o objeto lambda
+        """
         self.dic_variables = new_dic_variables
         self.define_begin_and_end()
         self.fun_lamb = Lambda(Symbol('x'), self.string %(self.dic_variables))
@@ -88,16 +94,7 @@ class Function(object):
     def __str__(self):
         return self.string %(self.dic_variables)
 
-if __name__ == '__main__':
-    f = Function()
-    c = Compiler('x + 3')
-    if c.valid:
-        f = Function(
-            string=c.string,
-            dic_variables=c.dic_variables,
-            pixels=1080, begin=0, end=0
-            )
-        print('Solucao: ', f.solve)
-        print('Solucao real: ', f.solve_real)
-        #print('Coordendas: ', f.coordinates)
-        #print(f.coordinates[0][0], f.coordinates[0][-1])
+if __name__ == "__main__":
+    f = Function('x**2 + 1')
+    print(f.solve_real.__str__())
+    print(type(f.solve_real))
