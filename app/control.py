@@ -16,7 +16,7 @@ def graph_function():
         'variables' : dict(),
         'error': '',
         'function_graph' : '',
-        'solve_real' : list()
+        'solve_real' : dict()
     }
     # se nao ter o que requisitar eh recebido None
     input_function = request.args.get('input_function')
@@ -36,7 +36,10 @@ def graph_function():
             try:
                 function = Function(compiler.string,
                                                 compiler.dic_variables)
-                dic_page['solve_real'] = function.solve_real
+                if function.solve_real.is_EmptySet:
+                    dic_page['solve_real'] = {}
+                else:
+                    dic_page['solve_real'] = function.solve_real
                 dic_page['variables'] = function.dic_variables
             except Exception as error:
                 print('\n\nControl Error: ', error)

@@ -18,8 +18,8 @@ class Function(object):
         self.begin = begin
         self.end = end
         self.coordinates = [[], []]
-        self.solve = []
-        self.solve_real = []
+        self.solve = {}
+        self.solve_real = {}
         if self.string:
             self.update(dic_variables)
 
