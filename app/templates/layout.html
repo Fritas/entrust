@@ -2,7 +2,7 @@
 <html lang="pt">
     <head>
         <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
-        <title> Entrust - {% block title %} Flask {% endblock %}</title>
+        <title> Entrust - {% block title %} {% endblock %}</title>
         <!-- autorais -->
         <link rel="stylesheet" type="text/css" href="/static/style.css">
         <!-- Links Externos -->
@@ -48,17 +48,15 @@
         <!-- Footer -->
         <footer class="text-white bg-blue-1">
             <div class="row container-fluid text-center">
-                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 d-inline">
-                    <img src="static/logo-ifc.png" style="margin:5px" alt="Logo do IFC - Campus Blumenau." width="200" hight="100">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-inline">
+                    <!-- Tamanho da img: 736x203-->
+                    <img src="static/logo-ifc.png" style="margin:5px" alt="Logo do IFC - Campus Blumenau." width="200" hight="55" >
                 </div>
                 <!-- -->
-                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 d-inline" style="padding:5px">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-inline" style="padding:5px">
                     <p style="align-center">ENTRUST: Solução e Apresentação Gráfica de Funções na Web</p>
                 </div>
-                <!-- Repositorios -->
-                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 d-inline">
-                    <!-- <a href="https://gitlab.blumenau.ifc.edu.br/Adriano/entrust" target="blank" style="color:white" >
-                            <img src="static/logo-gitlab.png" alt="Icone do Gitlab." width="40" hight="40"><br>GitLab</a> -->
+                <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-inline">
                 </div>
             </div>
         </footer>

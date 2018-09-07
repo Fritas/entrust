@@ -66,4 +66,4 @@ def page_not_found(e):
      mensagem='O URL informado não condiz com nenhuma das nossas páginas. Por favor retorne a página inicial!')
 
 if __name__ == '__main__':
-    app.run(debug=True, host="192.168.56.1")
+    app.run(debug=True)
