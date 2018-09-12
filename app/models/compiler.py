@@ -115,22 +115,23 @@ class Compiler(object):
     final_states = (2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16)
     stack = Stack()
 
-    def __init__(self, string):
+    def __init__(self, function):
         """
         O metodo __init__ inicializa o compilador com base em uma string
         """
         #retirar vazios e adicionar simbolo final
-        function = string.replace(' ', '') + '@'
+        function = function.replace(' ', '') + '@'
         #atributos particulares em cada objeto
         self.lista_tokens = list() 
         self.dic_variables = dict()
         self.token = str()
         self.error = str()
-        self.string = str()
         self.add_multiplication = False
+        self.compiled_string = str()
+        self.compiled_string_web = str()
         ######################################
         self.previous_state = 1
-        self.previous_value = ''
+        self.previous_value = str()
         for self.value in function: #verificar o self do for
             if not self.manage_state_machine(): #caso nao tenha erro em estado
                 break
@@ -272,7 +273,7 @@ class Compiler(object):
                 elif token[0] == 'variable':
                     value = '%(' + token[1] + ')s'
                     self.dic_variables[token[1]] = 1
-                self.string += value
+                self.compiled_string += value
 
     def compiler_function_web(self):
         """
@@ -280,7 +281,6 @@ class Compiler(object):
         Este metodo eh o responsavel final do compilador, ele ira concatenar a string da funcao e um dicionario
         para a mesma, que permite a troca dos coeficietnes pelos valores informados no dicionario para o python
         """
-        self.string_web = ''
         if not self.error: #caso nao tenha erro
             for token in self.lista_tokens:
                 value = token[1]
@@ -291,13 +291,13 @@ class Compiler(object):
                 elif token[0] == 'variable':
                     value = '%(' + token[1] + ')s'
                     self.dic_variables[token[1]] = 1
-                self.string_web += value
+                self.compiled_string_web += value
 
 if __name__ == '__main__':
     c = Compiler('(ax^|2|) + |')
     print('Validade: ', c.valid)
     print('Lista de tokens: ', c.lista_tokens)
     print('Dic', c.dic_variables)
-    print('String: ', c.string)
-    print('String: ', c.string %(c.dic_variables))
+    print('String: ', c.compiled_string)
+    print('String: ', c.compiled_string %(c.dic_variables))
     print('Error: ', c.error)
