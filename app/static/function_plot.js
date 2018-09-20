@@ -40,7 +40,7 @@ function det_height() {
     else if (window_width < 576) {
         var percentage = 60; //col-12
     }
-    return $(window).height() *  percentage  / 100;
+    return $(window).height() * percentage  / 100;
 }
 
 // https://mauriciopoppe.github.io/function-plot/

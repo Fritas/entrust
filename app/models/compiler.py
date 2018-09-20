@@ -127,7 +127,7 @@ class Compiler(object):
         self.token = str()
         self.error = str()
         self.add_multiplication = False
-        self.compiled_string = str()
+        self.compiled_string_python = str()
         self.compiled_string_web = str()
         self.compiled_string_math = str()
         ######################################
@@ -141,7 +141,7 @@ class Compiler(object):
             self.previous_state = self.actual_state
             self.previous_value = self.value
         self.valid_function()
-        self.compiler_function() #criar uma string para o sympy
+        self.compiler_function_python() #criar uma string para o sympy
         self.compiler_function_web() #criar uma string para a web
         self.compiler_string_math()
 
@@ -257,7 +257,7 @@ class Compiler(object):
             self.add_multiplication = not self.add_multiplication
         self.token += self.value
 
-    def compiler_function(self):
+    def compiler_function_python(self):
         """
         O metodo compiler_fuction concatena a string final da funcao e gera o dicionario de coeficientes
         Este metodo eh o responsavel final do compilador, ele ira concatenar a string da funcao e um dicionario

@@ -35,7 +35,7 @@ def graph_function():
                     compiler.dic_coefficients[coefficient] = valor
             #criar funcao
             try:
-                function = Function(compiler.compiled_string,
+                function = Function(compiler.compiled_string_python,
                                                 compiler.dic_coefficients)
                 if function.solve_real.is_EmptySet:
                     dic_page['solve_real'] = {}
