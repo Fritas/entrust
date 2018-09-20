@@ -1,0 +1,3 @@
+Erros
+
+01) erro relativo ao nome das strings no control.py. Nome de variáveis forem modificados na classe Compiler, porém não no control.py
