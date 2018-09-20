@@ -70,7 +70,7 @@ class Compiler(object):
             2 : 'last',
             3 : 'end',
             4 : 'operator',
-            5 : 'variable',
+            5 : 'coefficient',
             6 : 'number_int',
             7 : 'point',
             8 : 'number_float',
@@ -86,7 +86,7 @@ class Compiler(object):
             'end' : 0,
             'signal' : 1,
             'operator' : 2,
-            'variable' : 3,
+            'coefficient' : 3,
             'number' : 4,
             'point' : 5,
             'empty' : 6,
@@ -99,7 +99,7 @@ class Compiler(object):
             'end': ('@', ),
             'signal' : ('+', '-'),
             'operator' : ('/', '*', '^'),
-            'variable' : ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h','i', 'j',
+            'coefficient' : ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h','i', 'j',
                           'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
                           'u', 'v', 'w', 'y', 'z', 'A', 'B', 'C', 'D', 'E',
                           'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
@@ -123,7 +123,7 @@ class Compiler(object):
         function = function.replace(' ', '') + '@'
         #atributos particulares em cada objeto
         self.lista_tokens = list() 
-        self.dic_variables = dict()
+        self.dic_coefficients = dict()
         self.token = str()
         self.error = str()
         self.add_multiplication = False
@@ -270,9 +270,9 @@ class Compiler(object):
                     value = ')'
                 elif token[0] == 'operator' and value == '^':
                     value = '**'
-                elif token[0] == 'variable':
+                elif token[0] == 'coefficient':
                     value = '%(' + token[1] + ')s'
-                    self.dic_variables[token[1]] = 1
+                    self.dic_coefficients[token[1]] = 1
                 self.compiled_string += value
 
     def compiler_function_web(self):
@@ -288,16 +288,16 @@ class Compiler(object):
                     value = 'abs('
                 elif token[0] == 'module_end':
                     value = ')'
-                elif token[0] == 'variable':
+                elif token[0] == 'coefficient':
                     value = '%(' + token[1] + ')s'
-                    self.dic_variables[token[1]] = 1
+                    self.dic_coefficients[token[1]] = 1
                 self.compiled_string_web += value
 
 if __name__ == '__main__':
     c = Compiler('(ax^|2|) + |')
     print('Validade: ', c.valid)
     print('Lista de tokens: ', c.lista_tokens)
-    print('Dic', c.dic_variables)
+    print('Dic', c.dic_coefficients)
     print('String: ', c.compiled_string)
-    print('String: ', c.compiled_string %(c.dic_variables))
+    print('String: ', c.compiled_string %(c.dic_coefficients))
     print('Error: ', c.error)

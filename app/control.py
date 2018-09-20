@@ -13,7 +13,7 @@ def graph_function():
     """"Este metodo renderiza a pagina de grafico do site"""
     dic_page = {
         'input_function': '',
-        'variables' : dict(),
+        'coefficients' : dict(),
         'error': '',
         'function_graph' : '',
         'solve_real' : dict()
@@ -28,26 +28,26 @@ def graph_function():
             print('\n\nControl Error: ', error)
         if compiler.valid: #se compilador eh valido
             #requisitar variveis via get, caso eles ja estejam expressos pelo usuario anteriormente
-            for variable in compiler.dic_variables:
-                valor = request.args.get(variable)
+            for coefficient in compiler.dic_coefficients:
+                valor = request.args.get(coefficient)
                 if valor:
-                    compiler.dic_variables[variable] = valor
+                    compiler.dic_coefficients[coefficient] = valor
             #criar funcao
             try:
                 function = Function(compiler.compiled_string,
-                                                compiler.dic_variables)
+                                                compiler.dic_coefficients)
                 if function.solve_real.is_EmptySet:
                     dic_page['solve_real'] = {}
                 else:
                     dic_page['solve_real'] = function.solve_real
-                dic_page['variables'] = function.dic_variables
+                dic_page['coefficients'] = function.dic_coefficients
             except Exception as error:
                 print('\n\nControl Error: ', error)
-                dic_page['variables'] = compiler.dic_variables
+                dic_page['coefficients'] = compiler.dic_coefficients
         else:
             dic_page['error'] = compiler.error
         #concatenar a string para o grafico    
-        dic_page['function_graph'] = (compiler.compiled_string_web %(compiler.dic_variables))
+        dic_page['function_graph'] = (compiler.compiled_string_web %(compiler.dic_coefficients))
     return render_template('graph_function.html', dic=dic_page)
 
 @app.route('/linear_system', methods=['GET', 'POST'])
