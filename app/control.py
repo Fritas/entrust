@@ -34,7 +34,7 @@ def graph_function():
                     compiler.dic_variables[variable] = valor
             #criar funcao
             try:
-                function = Function(compiler.string,
+                function = Function(compiler.compiled_string,
                                                 compiler.dic_variables)
                 if function.solve_real.is_EmptySet:
                     dic_page['solve_real'] = {}
@@ -47,7 +47,7 @@ def graph_function():
         else:
             dic_page['error'] = compiler.error
         #concatenar a string para o grafico    
-        dic_page['function_graph'] = (compiler.string_web %(compiler.dic_variables))
+        dic_page['function_graph'] = (compiler.compiled_string_web %(compiler.dic_variables))
     return render_template('graph_function.html', dic=dic_page)
 
 @app.route('/linear_system', methods=['GET', 'POST'])
