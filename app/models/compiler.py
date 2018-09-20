@@ -129,6 +129,7 @@ class Compiler(object):
         self.add_multiplication = False
         self.compiled_string = str()
         self.compiled_string_web = str()
+        self.compiled_string_math = str()
         ######################################
         self.previous_state = 1
         self.previous_value = str()
@@ -142,6 +143,7 @@ class Compiler(object):
         self.valid_function()
         self.compiler_function() #criar uma string para o sympy
         self.compiler_function_web() #criar uma string para a web
+        self.compiler_string_math()
 
     def valid_function(self):
         """
@@ -292,6 +294,19 @@ class Compiler(object):
                     value = '%(' + token[1] + ')s'
                     self.dic_coefficients[token[1]] = 1
                 self.compiled_string_web += value
+
+    def compiler_string_math(self):
+        """
+        O metodo compiled_string_math agrega a compiled_string_math com o dic_cofficients para gerar uma string compilada no 
+        padrao matematico classico
+        """
+        if not self.error: #caso nao tenha erro
+            for token in self.lista_tokens:
+                value = token[1]
+                if token[0] == 'coefficient':
+                    value = '%(' + token[1] + ')s'
+                    self.dic_coefficients[token[1]] = 1
+                self.compiled_string_math += value
 
 if __name__ == '__main__':
     c = Compiler('(ax^|2|) + |')

@@ -12,11 +12,12 @@ def index():
 def graph_function():
     """"Este metodo renderiza a pagina de grafico do site"""
     dic_page = {
-        'input_function': '',
+        'input_function': str(),
         'coefficients' : dict(),
-        'error': '',
-        'function_graph' : '',
-        'solve_real' : dict()
+        'error': str(),
+        'function_graph' : str(),
+        'function_math' : str(),
+        'solve_real' : dict(),
     }
     # se nao ter o que requisitar eh recebido None
     input_function = request.args.get('input_function')
@@ -48,6 +49,7 @@ def graph_function():
             dic_page['error'] = compiler.error
         #concatenar a string para o grafico    
         dic_page['function_graph'] = (compiler.compiled_string_web %(compiler.dic_coefficients))
+        dic_page['function_math'] = (compiler.compiled_string_math %(compiler.dic_coefficients))
     return render_template('graph_function.html', dic=dic_page)
 
 @app.route('/linear_system', methods=['GET', 'POST'])
