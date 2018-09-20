@@ -49,7 +49,7 @@ function function_plotar(function_graph){
         width: width_graph,
         height: height_graph,
         target: '.graph',
-        color: 'green',
+        grid: true,
         //The little circle that has the x-coordinate of the mouse position is called a "tip", the following options can be configured:
         tip: {
             xLine: true,    // dashed line parallel to y = 0
