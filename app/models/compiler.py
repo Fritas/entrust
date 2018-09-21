@@ -9,7 +9,6 @@ class StateError(Exception):
     def __init__(self, actual_value, previous_value):
         self.actual_value = actual_value
         self.previous_value = previous_value
-        print(self)
 
     def __str__(self):
         if self.actual_value == "@":
@@ -24,20 +23,18 @@ class StateError(Exception):
 class ValueNotAccepted(Exception):
 
 
-    def __init__(self, value):
-        self.value = value
-        print(self)
 
     def __str__(self):
         return ('O caracter "%s" não é aceito pelo sistema!' %(self.value))
 
 class EmptyStack(Exception):
 
-    def __init__(self):
-        print(self)
 
     def __str__(self):
         return ('Algum parênteses/módulo foi aberto e não foi fechado corretamente!')
+
+class InvalidCompiler(Exception):
+    pass
 
 class Compiler(object):
     """
@@ -277,7 +274,7 @@ class Compiler(object):
                 elif token[0] == 'coefficient':
                     value = '%(' + token[1] + ')s'
                     self.dic_coefficients[token[1]] = 1
-                self.compiled_string += value
+                self.compiled_string_python += value
 
     def compiler_function_web(self):
         """
@@ -315,6 +312,6 @@ if __name__ == '__main__':
     print('Validade: ', c.valid)
     print('Lista de tokens: ', c.lista_tokens)
     print('Dic', c.dic_coefficients)
-    print('String: ', c.compiled_string)
-    print('String: ', c.compiled_string %(c.dic_coefficients))
+    print('String: ', c.compiled_string_python)
+    print('String: ', c.compiled_string_python %(c.dic_coefficients))
     print('Error: ', c.error)
