@@ -113,7 +113,6 @@ class Compiler(object):
             'unknown' : ('x')
         }
     final_states = (2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16)
-    stack = Stack()
 
     def __init__(self, function):
         """
@@ -127,6 +126,7 @@ class Compiler(object):
         self.token = str()
         self.error = str()
         self.add_multiplication = False
+        self.stack = Stack()
         self.compiled_string_python = str()
         self.compiled_string_web = str()
         self.compiled_string_math = str()
