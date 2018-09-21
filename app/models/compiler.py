@@ -155,9 +155,11 @@ class Compiler(object):
         except EmptyStack as error:
             self.error = error
         if not self.error:
-            self.valid = True
+            self.valid= True
+            return True
         else:
             self.valid = False
+            return False
 
     def manage_stack(self):
         """
