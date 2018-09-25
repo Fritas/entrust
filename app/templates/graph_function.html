@@ -27,7 +27,7 @@
 {% block section%}
 <body onresize="reloadGraph()" onload="reloadGraph()">
     <div class="row container-fluid">
-        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 cards">
+        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3 cards">
             <!-- form -->
             <form method="GET" class="form-group">
                 <!-- Entrada de dados -->
@@ -96,22 +96,20 @@
                     </h5>
                 </div>                
                 <div class="card-body" id="toggler-button-function_data">
-                    f(x) = {{ dic.function_math }}<!-- {{ dic.input_function }} -->
+                    f(x) = {{ dic.function_math }}
                     <br>Solução Real = {{ dic.solve_real }}
                 </div>
             </div>
         </div>
         <!-- Grafico -->
-        <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
-            <div class="graph" style="margin-top: 5px"></div>
+        <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-9">
+            <div class="graph" style="margin-top: 15px;"></div>
         </div>
     </div>
     <!-- Executar o código JavaScript 
     O JS não reconhece as variáveis do Flask em arquivo externo-->
     <script>
         function reloadGraph(){
-            width_graph = det_width();
-            height_graph = det_height();
             function_plotar('{{ dic.function_graph }}');
         }
     </script>

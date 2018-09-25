@@ -1,11 +1,9 @@
-var width_graph = det_width();
-var height_graph = det_height();
-
 function det_width (){
     // tamanho da tela * porcentagem que as colunas ocupam / 100
     var window_width = $(window).width();
+    //alert(window_width);
     if (window_width >= 1200) {
-        var colms = 8; //col-xl-8
+        var colms = 9; //col-xl-8
     } else if (window_width >= 992) {
         var colms = 8; //col-lg-8
     }
@@ -23,31 +21,26 @@ function det_width (){
 }
 
 function det_height() {
-    var window_width = $(window).width();
-    if (window_width >= 1500) {
-        var percentage = 84;
-    } else if (window_width >= 1200) {
-        var percentage = 80; //col-xl-8
-    } else if (window_width >= 992) {
-        var percentage = 75; //col-lg-8
-    }
-    else if (window_width >= 768) {
+    var window_height = $(window).height();
+    if (window_height >= 1200) {
+        var percentage = 75; //col-xl-8
+    } else if (window_height >= 992) {
+        var percentage = 70; //col-lg-8
+    } else if (window_height >= 768) {
         var percentage = 70; //col-md-8
-    }
-    else if (window_width >= 576) {
-        var percentage = 60; //col-sm-12 
-    }
-    else if (window_width < 576) {
+    } else if (window_height >= 576) {
+        var percentage = 65; //col-sm-12 
+    } else if (window_height < 576) {
         var percentage = 60; //col-12
     }
-    return $(window).height() * percentage  / 100;
+    return window_height * percentage / 100;
 }
 
 // https://mauriciopoppe.github.io/function-plot/
 function function_plotar(function_graph){
     functionPlot({
-        width: width_graph,
-        height: height_graph,
+        width: det_width(),
+        height: det_height(),
         target: '.graph',
         grid: true,
         //The little circle that has the x-coordinate of the mouse position is called a "tip", the following options can be configured:
@@ -66,4 +59,3 @@ function function_plotar(function_graph){
             ]
         })
 }
-
