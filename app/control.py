@@ -10,7 +10,7 @@ def index():
     #deve colocar o nome da funcao nao o url
 
 @app.route('/function', methods=['GET', 'POST'])
-def graph_function():
+def graph_function(): 
     """
         Este metodo renderiza a pagina de grafico do site
     """
@@ -46,8 +46,8 @@ def graph_function():
                 valor = request.args.get(coefficient)
                 if valor:
                     compiler.dic_coefficients[coefficient] = valor
+            #a funcao sorted ordena o dicionario de forma alfabetica
             dic_page['coefficients'] = compiler.dic_coefficients
-            print("Dic: ", compiler.dic_coefficients)
             #concatenar a string para o grafico
             dic_page['function_graph'] = (compiler.compiler_function_web() %(compiler.dic_coefficients))
             dic_page['function_math'] = (compiler.compiler_string_math() %(compiler.dic_coefficients))
