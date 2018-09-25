@@ -23,7 +23,6 @@ class StateError(Exception):
 class ValueNotAccepted(Exception):
 
 
-
     def __str__(self):
         return ('O caracter "%s" não é aceito pelo sistema!' %(self.value))
 
@@ -34,7 +33,10 @@ class EmptyStack(Exception):
         return ('Algum parênteses/módulo foi aberto e não foi fechado corretamente!')
 
 class InvalidCompiler(Exception):
-    pass
+
+
+    def __str__(self):
+        return "Compilação inválida"
 
 class Compiler(object):
     """
@@ -124,9 +126,6 @@ class Compiler(object):
         self.error = str()
         self.add_multiplication = False
         self.stack = Stack()
-        self.compiled_string_python = str()
-        self.compiled_string_web = str()
-        self.compiled_string_math = str()
         ######################################
         self.previous_state = 1
         self.previous_value = str()
@@ -137,10 +136,6 @@ class Compiler(object):
             self.manage_stack()
             self.previous_state = self.actual_state
             self.previous_value = self.value
-        self.valid_function()
-        self.compiler_function_python() #criar uma string para o sympy
-        self.compiler_function_web() #criar uma string para a web
-        self.compiler_string_math()
 
     def valid_function(self):
         """
@@ -151,12 +146,9 @@ class Compiler(object):
                 raise EmptyStack()
         except EmptyStack as error:
             self.error = error
-        if not self.error:
-            self.valid= True
-            return True
-        else:
-            self.valid = False
+        if self.error:
             return False
+        return True
 
     def manage_stack(self):
         """
@@ -249,7 +241,10 @@ class Compiler(object):
             self.lista_tokens.append(
                 (self.dic_lines[self.previous_state], self.token)
             )
-            self.token = ''
+            #se o token for um coeficiente armarzenar no dicionário dic_coefficient
+            if self.dic_lines[self.previous_state] == "coefficient":
+                self.dic_coefficients[self.token] = 1
+            self.token = str()
         #adicionar token por causa de excecao
         if self.add_multiplication:
             self.lista_tokens.append(('operator', '*'))
@@ -262,6 +257,7 @@ class Compiler(object):
         Este metodo eh o responsavel final do compilador, ele ira concatenar a string da funcao e um dicionario
         para a mesma, que permite a troca dos coeficietnes pelos valores informados no dicionario para o python
         """
+        string = str()
         if not self.error: #caso nao tenha erro
             for token in self.lista_tokens:
                 value = token[1]
@@ -273,8 +269,8 @@ class Compiler(object):
                     value = '**'
                 elif token[0] == 'coefficient':
                     value = '%(' + token[1] + ')s'
-                    self.dic_coefficients[token[1]] = 1
-                self.compiled_string_python += value
+                string += value
+        return string
 
     def compiler_function_web(self):
         """
@@ -282,6 +278,7 @@ class Compiler(object):
         Este metodo eh o responsavel final do compilador, ele ira concatenar a string da funcao e um dicionario
         para a mesma, que permite a troca dos coeficietnes pelos valores informados no dicionario para o python
         """
+        string = str()
         if not self.error: #caso nao tenha erro
             for token in self.lista_tokens:
                 value = token[1]
@@ -291,27 +288,28 @@ class Compiler(object):
                     value = ')'
                 elif token[0] == 'coefficient':
                     value = '%(' + token[1] + ')s'
-                    self.dic_coefficients[token[1]] = 1
-                self.compiled_string_web += value
+                string += value
+        return string
 
     def compiler_string_math(self):
         """
         O metodo compiled_string_math agrega a compiled_string_math com o dic_cofficients para gerar uma string compilada no 
         padrao matematico classico
         """
+        string = str()
         if not self.error: #caso nao tenha erro
             for token in self.lista_tokens:
                 value = token[1]
                 if token[0] == 'coefficient':
                     value = '%(' + token[1] + ')s'
-                    self.dic_coefficients[token[1]] = 1
-                self.compiled_string_math += value
+                string += value
+        return string
 
 if __name__ == '__main__':
-    c = Compiler('(ax^|2|) + |')
-    print('Validade: ', c.valid)
+    c = Compiler('ax^6 +bx^5 + cx^4 + dx ^3 + ex^2 + fx + g')#(ax^|2|) + |')
+    print('Validade: ', c.valid_function())
     print('Lista de tokens: ', c.lista_tokens)
-    print('Dic', c.dic_coefficients)
-    print('String: ', c.compiled_string_python)
-    print('String: ', c.compiled_string_python %(c.dic_coefficients))
+    print('Dic coefficientes', c.dic_coefficients)
+    #print('String: ', c.compiler_string_python())
+    #print('String: ', c.compiler_string_python() %(c.dic_coefficients))
     print('Error: ', c.error)
