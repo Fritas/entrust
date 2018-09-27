@@ -29,15 +29,18 @@ def graph_function():
             raise Exception("Função vazia!")
     except Exception as identifier:
         print("\n\nControl Error: %s \n" %(identifier))
+
     else:
         dic_page['input_function'] = input_function
         try:
             compiler = Compiler(input_function)
+            print(compiler.error)
             if not compiler.valid_function():
                 raise InvalidCompiler()
         except InvalidCompiler as identifier:
             print("\n\n Control error: %s \n" %(identifier))
             dic_page['error'] = compiler.error
+            print(dic_page['error'])
         except Exception as identifier:
             print("\n\n Control error: %s \n" %(identifier))
         else:

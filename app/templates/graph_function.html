@@ -27,7 +27,7 @@
 {% block section%}
 <body onresize="reloadGraph()" onload="reloadGraph()">
     <div class="row container-fluid">
-        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3 cards">
+        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 cards">
             <!-- form -->
             <form method="GET" class="form-group">
                 <!-- Entrada de dados -->
@@ -102,9 +102,9 @@
             </div>
         </div>
         <!-- Grafico -->
-        <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-9">
-            <div class="graph" style="margin-top: 15px;"></div>
-        </div>
+        <!--<div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">-->
+            <div class="graph"></div>
+        <!--</div>-->
     </div>
     <!-- Executar o código JavaScript 
     O JS não reconhece as variáveis do Flask em arquivo externo-->

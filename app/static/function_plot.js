@@ -3,7 +3,7 @@ function det_width (){
     var window_width = $(window).width();
     //alert(window_width);
     if (window_width >= 1200) {
-        var colms = 9; //col-xl-8
+        var colms = 8; //col-xl-8
     } else if (window_width >= 992) {
         var colms = 8; //col-lg-8
     }

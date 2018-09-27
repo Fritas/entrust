@@ -9,6 +9,7 @@ class StateError(Exception):
     def __init__(self, actual_value, previous_value):
         self.actual_value = actual_value
         self.previous_value = previous_value
+        print(self)
 
     def __str__(self):
         if self.actual_value == "@":
@@ -22,19 +23,25 @@ class StateError(Exception):
 
 class ValueNotAccepted(Exception):
 
+    def __init__(self, value):
+        self.value = value
+        print(self)
 
     def __str__(self):
         return ('O caracter "%s" não é aceito pelo sistema!' %(self.value))
 
 class EmptyStack(Exception):
 
+    def __init__(self):
+        print(self)
 
     def __str__(self):
         return ('Algum parênteses/módulo foi aberto e não foi fechado corretamente!')
 
 class InvalidCompiler(Exception):
 
-
+    def __init__(self):
+        pass
     def __str__(self):
         return "Compilação inválida"
 
