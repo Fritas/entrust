@@ -229,11 +229,18 @@ class Compiler(object):
             elif (self.previous_state == 5 and self.column == 10) or\
             (self.previous_state == 15 and self.column == 3):
                 raise MathException
+
             #para variaveis/incognita/numeros seguidas de inicio de modulo/parenteses
             #Estado: 5 - variavel, 15 - incognita, numero_int e 8 - numero_float
             elif (self.previous_state == 5 or self.previous_state == 15 or \
             self.previous_state == 6  or self.previous_state == 8) and \
             (self.actual_state == 9 or self.actual_state == 10):
+                raise MathException
+            #para variaveis/incognita/numeros seguidas de inicio de modulo/parenteses
+            #Estado: 5 - variavel, 15 - incognita, numero_int e 8 - numero_float
+            elif (self.previous_state == 11) and \
+            (self.actual_state == 5 or self.actual_state == 15 or \
+            self.actual_state == 6  or self.actual_state == 8):
                 raise MathException
         except MathException:
             self.add_multiplication = not self.add_multiplication
