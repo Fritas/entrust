@@ -52,6 +52,14 @@
             visibility: hidden;
 
         }
+        footer{
+            position: fixed;
+            bottom:0;
+            margin-top: height;
+            width: 100%;
+            padding-top: 5px;
+            padding-bottom: 10px;
+        }
     }
     @media (max-width: 768px){
         #bottom-dynamic{
@@ -73,14 +81,7 @@
         min-height:100%;
         position:relative;
     }
-    footer{
-        position: fixed;
-        bottom:0;
-        margin-top: height;
-        width: 100%;
-        padding-top: 5px;
-        padding-bottom: 10px;
-    }
+
     .justify {
         text-align:justify;
     }

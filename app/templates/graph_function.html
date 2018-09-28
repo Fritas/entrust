@@ -7,34 +7,7 @@
     <link rel="stylesheet" type="text/css" href="/static/style.css">
     <script type="text/javascript" src="/static/function_plot.js"></script>
     <script>
-        $(document).ready(
-            function(){
-                $(".toggler-function").click(
-                        function(){
-                        $(".toggler-button-function").animate({
-                            height: 'toggle'
-                        });
-                });
-
-                //
-                $(".toggler-function_data").click(
-                    function(){
-                        $("#toggler-button-function_data").animate({
-                            height: 'toggle'
-                        });
-                });
-            $(window).resize(
-                function() {
-                    if ($(window).width() > 767) {
-                        $(".toggler-button-function").animate({
-                            height: 'show'
-                        });
-                        $("#toggler-button-function_data").animate({
-                            height: 'show'
-                        });        
-                    }
-                });
-        });
+        
     </script>
 {% endblock %}
 
