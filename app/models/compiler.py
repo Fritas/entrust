@@ -58,17 +58,17 @@ class Compiler(object):
         (0,	0, 0, 0, 0, 0, 2,  0,  0,  0,  0),#2
         (0,	0, 0, 5, 6, 0, 3,  9,  0,  12, 15),#3
         (0,	3, 0, 5, 6, 0, 4,  9,  0,  12, 15),#4
-        (2,	3, 4, 5, 0, 0, 5,  0,  11, 14, 15),#5
-        (2,	3, 4, 5, 6, 7, 6,  0,  11, 14, 15),#6
+        (2,	3, 4, 5, 0, 0, 5,  9,  11, 14, 15),#5
+        (2,	3, 4, 5, 6, 7, 6,  9,  11, 14, 15),#6
         (0,	0, 0, 0, 8, 0, 7,  0,  0,  0,  0),#7
-        (2,	3, 4, 5, 8, 0, 8,  0,  11, 14, 15),#8
+        (2,	3, 4, 5, 8, 0, 8,  9,  11, 14, 15),#8
         (2,	3, 0, 5, 6, 0, 9,  10, 0,  12, 15),#9
         (2,	3, 0, 5, 6, 0, 9,  9,  0,  12, 15),#10
         (2,	3, 4, 5, 6, 0, 11, 9,  11, 0,  15),#11
         (2,	3, 0, 5, 6, 0, 12, 9,  0,  13, 15),#12
         (2,	3, 0, 5, 6, 0, 12, 9,  0,  14, 15),#13
         (2,	3, 4, 0, 0, 0, 13, 0,  11, 0,  0),#14
-        (2,	3, 4, 5, 6, 0, 5,  0,  11, 14, 0),#15
+        (2,	3, 4, 5, 6, 0, 5,  9,  11, 14, 0),#15
         )
     dic_lines = {
             0 : 'error',
@@ -211,23 +211,29 @@ class Compiler(object):
                 raise StateError(self.value, self.previous_value)
 
             #para numeros seguidos de variavel/incognita
-            #Estados: 6 : numero_int e 8 : numero_float
-            #Colunas: 3 : variavel e 10 : incognita
+            #Estados: 6 - numero_int e 8 - numero_float
+            #Colunas: 3 - variavel e 10 - incognita
             elif (self.previous_state == 6 or self.previous_state == 8) and \
             (self.column == 3 or self.column == 10):
                 raise MathException
 
             #para variavel/incognita seguidas de numero
-            #Estado: 5 : variavel e 15: incognita
-            #Coluna: 4 : numero
+            #Estado: 5 - variavel e 15 - incognita
+            #Coluna: 4 - numero
             elif (self.previous_state == 5 or self.previous_state == 15) and self.column == 4:
                 raise MathException
 
             #para incogntas seguida de variavel ou variavel seguida de incongnita
-            #Estado: 5: variavel e 15 : incognita
-            #Coluna: 3 : variavel e 10 : incognita
+            #Estado: 5 - variavel e 15 - incognita
+            #Coluna: 3 - variavel e 10 - incognita
             elif (self.previous_state == 5 and self.column == 10) or\
             (self.previous_state == 15 and self.column == 3):
+                raise MathException
+            #para variaveis/incognita/numeros seguidas de inicio de modulo/parenteses
+            #Estado: 5 - variavel, 15 - incognita, numero_int e 8 - numero_float
+            elif (self.previous_state == 5 or self.previous_state == 15 or \
+            self.previous_state == 6  or self.previous_state == 8) and \
+            (self.actual_state == 9 or self.actual_state == 10):
                 raise MathException
         except MathException:
             self.add_multiplication = not self.add_multiplication
