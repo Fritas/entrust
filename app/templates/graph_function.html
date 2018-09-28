@@ -7,27 +7,41 @@
     <link rel="stylesheet" type="text/css" href="/static/style.css">
     <script type="text/javascript" src="/static/function_plot.js"></script>
     <script>
-        $(document).ready(function(){
-            $(".toggler-function").click(function(){
-                $(".toggler-button-function").animate({
-                    height: 'toggle'
+        $(document).ready(
+            function(){
+                $(".toggler-function").click(
+                        function(){
+                        $(".toggler-button-function").animate({
+                            height: 'toggle'
+                        });
                 });
-            });
-        });
-        $(document).ready(function(){
-            $(".toggler-function_data").click(function(){
-                $("#toggler-button-function_data").animate({
-                    height: 'toggle'
+
+                //
+                $(".toggler-function_data").click(
+                    function(){
+                        $("#toggler-button-function_data").animate({
+                            height: 'toggle'
+                        });
                 });
-            });
+            $(window).resize(
+                function() {
+                    if ($(window).width() > 767) {
+                        $(".toggler-button-function").animate({
+                            height: 'show'
+                        });
+                        $("#toggler-button-function_data").animate({
+                            height: 'show'
+                        });        
+                    }
+                });
         });
     </script>
 {% endblock %}
 
 {% block section%}
-<body onresize="reloadGraph()" onload="reloadGraph()">
+<body onresize="reloadGraph()" onresize="reloadButton()" onload="reloadGraph()">
     <div class="row container-fluid">
-        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 cards">
+        <div class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3 cards">
             <!-- form -->
             <form method="GET" class="form-group">
                 <!-- Entrada de dados -->
@@ -102,9 +116,9 @@
             </div>
         </div>
         <!-- Grafico -->
-        <!--<div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">-->
+        <div class="col-12 col-sm-12 col-md-8 col-lg-9 col-xl-9">
             <div class="graph"></div>
-        <!--</div>-->
+        </div>
     </div>
     <!-- Executar o código JavaScript 
     O JS não reconhece as variáveis do Flask em arquivo externo-->

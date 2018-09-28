@@ -3,9 +3,9 @@ function det_width (){
     var window_width = $(window).width();
     //alert(window_width);
     if (window_width >= 1200) {
-        var colms = 8; //col-xl-8
+        var colms = 9; //col-xl-9
     } else if (window_width >= 992) {
-        var colms = 8; //col-lg-8
+        var colms = 9; //col-lg-9
     }
     else if (window_width >= 768) {
         var colms = 8; //col-md-8
@@ -17,15 +17,15 @@ function det_width (){
         var colms = 12; //col-12
     }
     colms = colms - 1
-    return (window_width * (colms * 100 / 12) / 100);
+    return Math.round(window_width * (colms * 100 / 12) / 100);
 }
 
 function det_height() {
     var window_height = $(window).height();
     if (window_height >= 1200) {
-        var percentage = 75; //col-xl-8
+        var percentage = 75; //col-xl-9
     } else if (window_height >= 992) {
-        var percentage = 70; //col-lg-8
+        var percentage = 70; //col-lg-9
     } else if (window_height >= 768) {
         var percentage = 70; //col-md-8
     } else if (window_height >= 576) {
@@ -33,7 +33,7 @@ function det_height() {
     } else if (window_height < 576) {
         var percentage = 60; //col-12
     }
-    return window_height * percentage / 100;
+    return Math.round(window_height * percentage / 100);
 }
 
 // https://mauriciopoppe.github.io/function-plot/
