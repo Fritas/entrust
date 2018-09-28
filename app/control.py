@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template, redirect, url_for
+from socket import gethostbyname, gethostname
 from models.compiler import Compiler, InvalidCompiler
 from models.function import Function
 
@@ -88,4 +89,5 @@ def page_not_found(e):
      mensagem='O URL informado não condiz com nenhuma das nossas páginas. Por favor retorne a página inicial!')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host=gethostbyname(gethostname()))
+    #gethostbyname(gethostname()) > pega o IP da maquina local
