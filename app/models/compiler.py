@@ -149,7 +149,8 @@ class Compiler(object):
         O metodo valid_function eh responsável por validar a função
         """
         try:
-            if not self.stack.isEmpty():
+            #nao deve ter nenhum erro anterior
+            if not self.stack.isEmpty() and not self.error:
                 raise EmptyStack()
         except EmptyStack as error:
             self.error = error
