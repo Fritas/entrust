@@ -29,6 +29,8 @@ class ValueNotAccepted(Exception):
         print(self)
 
     def __str__(self):
+        if self.value == '.': #point
+            return ('Utilize vírguala ao invés de ponto!')
         return ('O caracter "%s" não é aceito pelo sistema!' %(self.value))
 
 class EmptyStack(Exception):
@@ -337,8 +339,7 @@ class Compiler(object):
         return string
 
 if __name__ == '__main__':
-    #c = Compiler('ax^6 +bx^5 + cx^4 + dx ^3 + ex^2 + fx + g')#(ax^|2|) + |')
-    c = Compiler('|-x + 3|6')
+    c = Compiler('9.5')#('ax^6 +bx^5 + cx^4 + dx ^3 + ex^2 + fx + g')#(ax^|2|) + |')
     print('Validade: ', c.valid_function())
     print('Lista de tokens: ', c.lista_tokens)
     print('Dic coefficientes', c.dic_coefficients)
