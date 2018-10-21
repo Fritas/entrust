@@ -2,6 +2,7 @@ from flask import Flask, request, render_template, redirect, url_for
 from socket import gethostbyname, gethostname
 from models.compiler import Compiler, InvalidCompiler
 from models.function import Function
+from models.functions import order_dict
 
 app = Flask(__name__)
 
@@ -30,7 +31,6 @@ def graph_function():
             raise Exception("Função vazia!")
     except Exception as identifier:
         print("\n\nControl Error: %s \n" %(identifier))
-
     else:
         dic_page['input_function'] = input_function
         try:
@@ -51,7 +51,7 @@ def graph_function():
                 if valor:
                     compiler.dic_coefficients[coefficient] = valor
             #a funcao sorted ordena o dicionario de forma alfabetica
-            dic_page['coefficients'] = compiler.dic_coefficients
+            dic_page['coefficients'] = order_dict(compiler.dic_coefficients)
             #concatenar a string para o grafico
             dic_page['function_graph'] = (compiler.compiler_function_web() %(compiler.dic_coefficients))
             dic_page['function_math'] = (compiler.compiler_string_math() %(compiler.dic_coefficients))
