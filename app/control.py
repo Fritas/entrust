@@ -35,7 +35,6 @@ def graph_function():
         dic_page['input_function'] = input_function
         try:
             compiler = Compiler(input_function)
-            print(compiler.error)
             if not compiler.valid_function():
                 raise InvalidCompiler()
         except InvalidCompiler as identifier:
@@ -66,9 +65,7 @@ def graph_function():
                     dic_page['solve_real'] = {}
                 else:
                     dic_page['solve_real'] = function.solve_real
-                print("Solve real: ", dic_page['solve_real'])
     finally:
-        print(dic_page)
         return render_template('graph_function.html', dic=dic_page)
            
 @app.route('/linear_system', methods=['GET', 'POST'])
