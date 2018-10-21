@@ -52,7 +52,7 @@
             visibility: hidden;
 
         }
-        footer{
+    /*    footer{
             position: fixed;
             bottom:0;
             margin-top: height;
@@ -63,6 +63,7 @@
         .margin-footer {
             margin-bottom: 100px;
         }
+    */
     }
     @media (max-width: 768px){
         #bottom-dynamic{
@@ -80,6 +81,13 @@
     nav {
         margin-bottom: 10px;
     }
+
+    /*footer {
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+    }*/
+    
     .container {
         min-height:100%;
         position:relative;
@@ -88,6 +96,7 @@
     .justify {
         text-align:justify;
     }
+
 
     /* block */
     #block{

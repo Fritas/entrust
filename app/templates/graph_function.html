@@ -16,7 +16,7 @@
                         $(".toggler-button-function").animate({
                             height: 'toggle'
                     });
-                })
+                });
                 //
                 $(".toggler-function_data").click(
                     function(){
@@ -24,18 +24,23 @@
                             height: 'toggle'
                     });
                 });
-            $(window).resize(
-                // REAPARECE CAIXAS DE ENTRADA DE FUNCAO E DADOS DA FUNCAO PARA TELAS MAIORES QUE 768PX QUANDO CASO ELAS ESTEJAM FECHADAS
-                function() {
-                    if ($(window).width() >= 768) {
-                        $(".toggler-button-function").animate({
-                            height: 'show'
-                        });
-                        $("#toggler-button-function_data").animate({
-                            height: 'show'
-                        });        
-                    }
-            });
+
+                $(window).resize(
+                    // REAPARECE CAIXAS DE ENTRADA DE FUNCAO E DADOS DA FUNCAO PARA TELAS MAIORES QUE 768PX QUANDO CASO ELAS ESTEJAM FECHADAS
+                    function() {
+                        if ($(window).width() >= 768) {
+                            $(".toggler-button-function").animate({
+                                height: 'show'
+                            });
+                            $("#toggler-button-function_data").animate({
+                                height: 'show'
+                            });       
+                        }
+                        if ($(window).height() > $('body').height()){
+                            $("footer").css({"position": "absolute", "bottom" : "0px", "width": "100%"});
+                        }
+                });
+            
         });
     </script>
 {% endblock %}
