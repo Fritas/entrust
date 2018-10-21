@@ -1,4 +1,5 @@
 from .stack import Stack
+#from stack import Stack
 
 class MathException(Exception):
     pass
@@ -111,7 +112,7 @@ class Compiler(object):
                           'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
                           'P', 'Q', 'R', 'S', 'T','U','V','W', 'X', 'Y', 'Z'),
             'number' : ('0', '1', '2', '3', '4', '5', '6', '7', '8', '9'),
-            'point' : ('.', ), 
+            'point' : (',', ), 
             'empty' : (' ', ''),
             'parentheses_start' : ('(', ),
             'parentheses_end' : (')', ),
@@ -243,6 +244,8 @@ class Compiler(object):
             (self.actual_state == 5 or self.actual_state == 15 or \
             self.actual_state == 6  or self.actual_state == 8):
                 raise MathException
+
+
         except MathException:
             self.add_multiplication = not self.add_multiplication
         except StateError as error:
@@ -290,7 +293,11 @@ class Compiler(object):
                     value = '**'
                 elif token[0] == 'coefficient':
                     value = '%(' + token[1] + ')s'
+                elif token[0] == 'number_float':
+                    number = token[1].split(',')
+                    value = "%s.%s" %(number[0], number[1])
                 string += value
+                
         return string
 
     def compiler_function_web(self):
@@ -309,10 +316,13 @@ class Compiler(object):
                     value = ')'
                 elif token[0] == 'coefficient':
                     value = '%(' + token[1] + ')s'
+                elif token[0] == 'number_float':
+                    number = token[1].split(',')
+                    value = "%s.%s" %(number[0], number[1])
                 string += value
         return string
 
-    def compiler_string_math(self):
+    def compiler_fucntion_math(self):
         """
         O metodo compiled_string_math agrega a compiled_string_math com o dic_cofficients para gerar uma string compilada no 
         padrao matematico classico
@@ -327,10 +337,12 @@ class Compiler(object):
         return string
 
 if __name__ == '__main__':
-    c = Compiler('ax^6 +bx^5 + cx^4 + dx ^3 + ex^2 + fx + g')#(ax^|2|) + |')
+    #c = Compiler('ax^6 +bx^5 + cx^4 + dx ^3 + ex^2 + fx + g')#(ax^|2|) + |')
+    c = Compiler('|-x + 3|6')
     print('Validade: ', c.valid_function())
     print('Lista de tokens: ', c.lista_tokens)
     print('Dic coefficientes', c.dic_coefficients)
-    #print('String: ', c.compiler_string_python())
-    #print('String: ', c.compiler_string_python() %(c.dic_coefficients))
+    print('String Python: ', c.compiler_function_python() %(c.dic_coefficients))
+    print('String Web: ', c.compiler_function_web() %(c.dic_coefficients))
+    print('String Math: ', c.compiler_fucntion_math() %(c.dic_coefficients))
     print('Error: ', c.error)

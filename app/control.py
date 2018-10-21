@@ -54,7 +54,7 @@ def graph_function():
             dic_page['coefficients'] = order_dict(compiler.dic_coefficients)
             #concatenar a string para o grafico
             dic_page['function_graph'] = (compiler.compiler_function_web() %(compiler.dic_coefficients))
-            dic_page['function_math'] = (compiler.compiler_string_math() %(compiler.dic_coefficients))
+            dic_page['function_math'] = (compiler.compiler_fucntion_math() %(compiler.dic_coefficients))
             #criar funcao
             try:
                 function = Function(compiler.compiler_function_python(), compiler.dic_coefficients)
@@ -68,6 +68,7 @@ def graph_function():
                     dic_page['solve_real'] = function.solve_real
                 print("Solve real: ", dic_page['solve_real'])
     finally:
+        print(dic_page)
         return render_template('graph_function.html', dic=dic_page)
            
 @app.route('/linear_system', methods=['GET', 'POST'])
