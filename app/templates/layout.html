@@ -17,12 +17,22 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script>
-            $(document).ready(
-                function (){
-                    // coloca o rodape em fim de pagina caso ele nao seja empurrado totalmente para baixo pelo conteudo
-                    if ($(window).height() > $('body').height()){
+            function position_footer() {
+                if ($(window).height() > $('body').height()){
                     $("footer").css({"position": "absolute", "bottom" : "0px", "width": "100%"});
                 }
+                else {
+                    $("footer").css({"position": "relative", "bottom" : "0px", "width": "100%"});
+                }
+                return 0;
+            }
+            $(document).ready(
+                function (){
+                   position_footer();
+                $(window).resize(
+                    function(){
+                        position_footer();
+                });
             });
         </script>
         {% block script %}{% endblock %}
