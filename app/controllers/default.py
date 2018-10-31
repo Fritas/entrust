@@ -1,5 +1,4 @@
-from flask import Flask, request, render_template, redirect, url_for
-from socket import gethostbyname, gethostname
+from flask import request, render_template, redirect, url_for
 from app import app
 from app.models.compiler import Compiler, InvalidCompiler
 from app.models.function import Function
@@ -10,6 +9,7 @@ from app.models.functions import order_dict
 def index():
     return redirect(url_for('graph_function')) 
     #deve colocar o nome da funcao nao o url
+
 
 @app.route('/function', methods=['GET', 'POST'])
 def graph_function(): 
@@ -67,15 +67,13 @@ def graph_function():
                     dic_page['solve_real'] = function.solve_real
     finally:
         return render_template('graph_function.html', dic=dic_page)
-           
+
+
 @app.route('/linear_system', methods=['GET', 'POST'])
 def graph_linear_system():
     return render_template('graph_linear_system.html')
 
+
 @app.route('/about')
 def about():
     return render_template('about.html')
-
-if __name__ == '__main__':
-    app.run(debug=True, host=gethostbyname(gethostname()))
-    #gethostbyname(gethostname()) > pega o IP da maquina local
