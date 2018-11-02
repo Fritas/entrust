@@ -32,4 +32,3 @@ manager.add_command('runserver', server)
 #controllers
 from app.controllers import default
 from app.controllers import error
-from app.controllers import test
