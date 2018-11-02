@@ -9,13 +9,15 @@ from socket import gethostbyname, gethostname
 
 #app
 app = Flask(__name__)
+app.config.from_object('config')
 
 #database
 db = SQLAlchemy
 migrate = Migrate(app, db)
 
 #server
-server = Server(host='192.168.56.1', port=5000, use_debugger=True)
+server = Server()
+print("Server:", server)
 print('IP: ', gethostbyname(gethostname()))
 
 #manager
