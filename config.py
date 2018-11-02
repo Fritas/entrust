@@ -1,5 +1,5 @@
 """
-Arquivo de configurações para o Flask
+Flask Configuration File
 """
 
 DEBUG = True

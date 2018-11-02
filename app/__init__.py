@@ -1,5 +1,5 @@
 """
-    __init__ do módulo app
+    __init__ of the main module
 """
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
