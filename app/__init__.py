@@ -18,7 +18,7 @@ migrate = Migrate(app, db)
 
 #server
 endereco_ipv4 = gethostbyname(gethostname())
-server = Server(host=endereco_ipv4, port=80)
+server = Server(host=endereco_ipv4, port=5000)
 
 #manager
 manager = Manager(app)
