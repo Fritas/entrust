@@ -5,6 +5,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_script import Manager, Server
 from flask_migrate import Migrate, MigrateCommand
+
 from socket import gethostbyname, gethostname
 
 #app
@@ -16,16 +17,15 @@ db = SQLAlchemy
 migrate = Migrate(app, db)
 
 #server
-server = Server()
-print("Server:", server)
-print('IP: ', gethostbyname(gethostname()))
+endereco_ipv4 = gethostbyname(gethostname())
+server = Server(host=endereco_ipv4, port=80)
 
 #manager
 manager = Manager(app)
 
 #manager add command
 manager.add_command('db', MigrateCommand)
-manager.add_command('runserver', Server())
+manager.add_command('runserver', server)
 
 
 
