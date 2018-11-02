@@ -68,12 +68,6 @@ def graph_function():
     finally:
         return render_template('graph_function.html', dic=dic_page)
 
-
-@app.route('/linear_system', methods=['GET', 'POST'])
-def graph_linear_system():
-    return render_template('graph_linear_system.html')
-
-
 @app.route('/about')
 def about():
     return render_template('about.html')
