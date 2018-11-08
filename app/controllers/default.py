@@ -2,7 +2,7 @@ from flask import request, render_template, redirect, url_for
 from app import app
 from app.models.compiler import Compiler, InvalidCompiler
 from app.models.function import Function
-from app.models.functions import order_dict
+from app.static.functions import order_dict
 
 
 @app.route('/', methods=['GET', 'POST'])
