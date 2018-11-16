@@ -57,7 +57,6 @@ def graph_function():
             #criar funcao
             try:
                 function = Function(compiler.compiler_function_python(), compiler.dic_coefficients)
-
             except Exception as identifier:
                 print("\n\n Control error: %s \n" %(identifier))
             else:
