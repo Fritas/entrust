@@ -41,6 +41,14 @@ class Function(object):
         self.fun_lamb = Lambda(Symbol('x'), self.string_function %(self.dic_coefficients))
         self.solve_function()
 
+    def get_solve(self):
+        if not self.solve:
+            self.solve_function()
+        if self.solve_real.is_EmptySet:
+            return {}
+        else:
+            return self.solve_real
+
     def get_string(self):
         return self.string_function %(self.dic_coefficients)
 

@@ -61,10 +61,7 @@ def graph_function():
             except Exception as identifier:
                 print("\n\n Control error: %s \n" %(identifier))
             else:
-                if function.solve_real.is_EmptySet:
-                    dic_page['solve_real'] = {}
-                else:
-                    dic_page['solve_real'] = function.solve_real
+                dic_page['solve_real'] = function.get_solve()
     finally:
         return render_template('graph_function.html', dic=dic_page)
 
