@@ -1,4 +1,3 @@
-#from sympy import Lambda, solve, Symbol
 from sympy import Lambda,  Symbol, S, solveset
 from sympy.abc import x
 

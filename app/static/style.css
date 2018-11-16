@@ -1,47 +1,80 @@
-/* color */
-/* para escolher usar: 
-    http://paletton.com/#uid=52P1q0kllllK8hhuYnxbIj95Dpp 
-    https://color.adobe.com/pt/create/color-wheel
-*/
+/* TAGs */
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+footer{
+    min-height: 100px;
+    padding: 1em;
+}
+
+/* CLASSs */
+    
     /* COLORS: rgb(0, 86, 127) rgb(76, 197, 255) rgb(0, 173, 255) rgb(38, 99, 127) rgb(0, 130, 204)*/
-    /* background */
-    .bg-blue-1 {
-        background-color: rgb(0, 86, 127); /* NAV FOOTER*/
-    }
-    .bg-blue-2 {
-        background-color: rgb(76, 197, 255);
-    }
-    .bg-blue-3 {
-        background-color: rgb(0, 173, 255);
-    }
-    .bg-blue-4 {
-        background-color: rgb(38, 99, 127); 
-    }
-    .bg-blue-5 {
-        background-color: rgb(0, 130, 204);
-    }
-    .bg-yellow {
-        background-color: #FFF718;
-    }
+    /* para escolher usar:     http://paletton.com/#uid=52P1q0kllllK8hhuYnxbIj95Dpp ou    https://color.adobe.com/pt/create/color-wheel */
+        /* background */
+        .bg-blue-1 {
+            background-color: rgb(0, 86, 127); /* NAV FOOTER*/
+        }
+        .bg-blue-2 {
+            background-color: rgb(76, 197, 255);
+        }
+        .bg-blue-3 {
+            background-color: rgb(0, 173, 255);
+        }
+        .bg-blue-4 {
+            background-color: rgb(38, 99, 127); 
+        }
+        .bg-blue-5 {
+            background-color: rgb(0, 130, 204);
+        }
+        .bg-yellow {
+            background-color: #FFF718;
+        }
 
-    /* border */
-    .border-blue-1 {
-        border-color: rgb(0, 86, 127); /* NAV FOOTER*/
-    }
-    .border-blue-2 {
-        border-color: rgb(76, 197, 255);
-    }
-    .border-blue-3 {
-        border-color: rgb(0, 173, 255);
-    }
-    .border-blue-4 {
-        border-color: rgb(38, 99, 127); 
-    }
-    .border-blue-5 {
-        border-color: rgb(0, 130, 204); 
-    }
+        /* border */
+        .border-blue-1 {
+            border-color: rgb(0, 86, 127); /* NAV FOOTER*/
+        }
+        .border-blue-2 {
+            border-color: rgb(76, 197, 255);
+        }
+        .border-blue-3 {
+            border-color: rgb(0, 173, 255);
+        }
+        .border-blue-4 {
+            border-color: rgb(38, 99, 127); 
+        }
+        .border-blue-5 {
+            border-color: rgb(0, 130, 204); 
+        }
 
+    /* */
+        .content {
+            min-height: calc(100% - 100px); /* DIMINUIR A ALTURA DO FOOTER*/
+        }
+        .content-inside {
+            padding: 20px;
+            padding-bottom: 50px;
+        }
+    
+        .text-center {
+            text-align: center;
+        }
+        .justify {
+            text-align:justify;
+        }
 
+        .card-block {
+            min-height: 100%;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+/* IDs */
     /* DYNAMIC */
     #bottom-dynamic{
         margin-right: 0px; 
@@ -52,18 +85,6 @@
             visibility: hidden;
 
         }
-    /*    footer{
-            position: fixed;
-            bottom:0;
-            margin-top: height;
-            width: 100%;
-            padding-top: 5px;
-            padding-bottom: 10px;
-        }
-        .margin-footer {
-            margin-bottom: 100px;
-        }
-    */
     }
     @media (max-width: 768px){
         #bottom-dynamic{
@@ -71,37 +92,7 @@
         }
 
     }
-    /* tags */
-    html,
-    body {
-       margin:0;
-       padding:0;
-       min-height:100%;
-    }
-    nav {
-        margin-bottom: 10px;
-    }
-
-    /*footer {
-        position: absolute;
-        bottom: 0px;
-        width: 100%;
-    }*/
-    
-    .container {
-        min-height:100%;
-        position:relative;
-    }
-
-    .justify {
-        text-align:justify;
-    }
-
-
     /* block */
     #block{
         padding: 5px;
-    }
-    .card-block {
-        min-height: 100%;
     }
