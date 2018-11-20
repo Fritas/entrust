@@ -1,4 +1,0 @@
-Erros
-
-01) erro relativo ao nome das strings no control.py. Nome de variáveis forem modificados na classe Compiler, porém não no control.py
-02) erros em relação a pilha do compilador só devem ser declarados caso não haja nenhum outro erro.
