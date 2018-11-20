@@ -2,8 +2,7 @@ from flask import request, render_template, redirect, url_for
 from app import app
 from app.models.compiler import Compiler, InvalidCompiler
 from app.models.function import Function
-from app.static.functions import order_dict
-
+from app.models.order_dict import OrderDict
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -18,7 +17,7 @@ def graph_function():
     """
     dic_page = {
         'input_function': str(),
-        'coefficients' : dict(),
+        'coefficients' : OrderDict(),
         'error': str(),
         'function_graph' : str(),
         'function_math' : str(),
@@ -49,8 +48,8 @@ def graph_function():
                 valor = request.args.get(coefficient)
                 if valor:
                     compiler.dic_coefficients[coefficient] = valor
-            #a funcao sorted ordena o dicionario de forma alfabetica
-            dic_page['coefficients'] = order_dict(compiler.dic_coefficients)
+            #a funcao sorted ordena o dicionario de forma alfabetica | o método sort_key ordenada o dicionario
+            dic_page['coefficients'] = compiler.dic_coefficients.sort_key()
             #concatenar a string para o grafico
             dic_page['function_graph'] = (compiler.compiler_function_web() %(compiler.dic_coefficients))
             dic_page['function_math'] = (compiler.compiler_fucntion_math() %(compiler.dic_coefficients))
