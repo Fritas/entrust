@@ -12,23 +12,31 @@
 {% block section %}
 <!-- Question -->
 <div class="row container-fluid">
-    <p>Question</p>
-    <p>{{ question.text }}</p>
-    <div class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3"></div>
-    <form>
-        {% for option in question.options%}
-            <input type="radio" name='answer' value="{{ option.id }}">  {{ option.letter }}) {{ option.text }}<br>
-        {% endfor %}
-    </form>
-
+    <div class="container">
+        <p>Question</p>
+        <p>{{ question.text }}</p>
+    </div>
 </div>
 <!-- Graph -->
 <div class="row container-fluid">
-    <a href="/function?input_function=ax^3+%2B+bx^2+%2B+cx+%2B+d" target="blank">Ampliar Gráfico</a>
-    <div class="graph"></div>
+    <div class="container text-center">
+        <div class="graph"></div>
+        <p class="text-center">
+            <a href="/function?input_function=ax^3+%2B+bx^2+%2B+cx+%2B+d" target="blank">Ampliar Gráfico</a>
+        </p>
+    </div>
 
+<div class="row container-fluid">
+    <div class="container text-center">
+        <form>
+            {% for option in question.options%}
+                <input type="radio" name='answer' value="{{ option.id }}">  {{ option.letter }}) {{ option.text }}<br>
+            {% endfor %}
+        </form>
+    </div>
 </div>
 <script>
-    function_plotar('{{ question.graph_function }}', $(window).width()/3, $(window).width()/3);
+    var width = $('container').width();
+    function_plotar('{{ question.graph_function }}', width, width);
 </script>
 {% endblock section %}
