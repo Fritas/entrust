@@ -1,6 +1,5 @@
-from .order_dict import OrderDict
-from .stack import Stack
-#from stack import Stack
+from app.models.order_dict import OrderDict
+from app.models.stack import Stack
 
 class MathException(Exception):
     pass

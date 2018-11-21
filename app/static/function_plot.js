@@ -37,10 +37,22 @@ function det_height() {
 }
 
 // https://mauriciopoppe.github.io/function-plot/
-function function_plotar(function_graph){
+function function_plotar(function_graph, width=0, height=0){
+    if (width == 0) {
+        var width_graph = det_width();
+    } else {
+        var width_graph = width;
+    }
+
+    if (height == 0) {
+        var height_graph = det_height();
+    } else {
+        var height_graph = height;
+    }
+
     functionPlot({
-        width: det_width(),
-        height: det_height(),
+        width: width_graph,
+        height: height_graph,
         target: '.graph',
         grid: true,
         //The little circle that has the x-coordinate of the mouse position is called a "tip", the following options can be configured:
@@ -53,7 +65,7 @@ function function_plotar(function_graph){
         },
         data: [
                 {
-                    fn: function_graph, //'{{ dic.function_graph }}',
+                    fn: function_graph, 
                     graphType: 'polyline', //permite uma maior complexidade de funções
                 }
             ]
