@@ -19,6 +19,7 @@ class OrderDict(OrderedDict):
 
         for key in order_dic_keys:
             self.add(key, order_dic[key])
+        return self
 
 if __name__ == "__main__":
     
