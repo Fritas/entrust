@@ -1,5 +1,5 @@
-from .stack import Stack
-#from stack import Stack
+from app.models.order_dict import OrderDict
+from app.models.stack import Stack
 
 class MathException(Exception):
     pass
@@ -131,7 +131,7 @@ class Compiler(object):
         function = function.replace(' ', '') + '@'
         #atributos particulares em cada objeto
         self.lista_tokens = list() 
-        self.dic_coefficients = dict()
+        self.dic_coefficients = OrderDict()
         self.token = str()
         self.error = str()
         self.add_multiplication = False
@@ -269,7 +269,7 @@ class Compiler(object):
             )
             #se o token for um coeficiente armarzenar no dicionário dic_coefficient
             if self.dic_lines[self.previous_state] == "coefficient":
-                self.dic_coefficients[self.token] = 1
+                self.dic_coefficients.add(key=self.token, value=1)
             self.token = str()
         #adicionar token por causa de excecao
         if self.add_multiplication:
@@ -339,10 +339,11 @@ class Compiler(object):
         return string
 
 if __name__ == '__main__':
-    c = Compiler('9.5')#('ax^6 +bx^5 + cx^4 + dx ^3 + ex^2 + fx + g')#(ax^|2|) + |')
+    c = Compiler('ax^6 +bx^5 + cx^4 + dx ^3 + ex^2 + fx + g')#(ax^|2|) + |')
     print('Validade: ', c.valid_function())
     print('Lista de tokens: ', c.lista_tokens)
     print('Dic coefficientes', c.dic_coefficients)
+    print('String Python: ', c.compiler_function_python())
     print('String Python: ', c.compiler_function_python() %(c.dic_coefficients))
     print('String Web: ', c.compiler_function_web() %(c.dic_coefficients))
     print('String Math: ', c.compiler_fucntion_math() %(c.dic_coefficients))

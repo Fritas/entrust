@@ -13,12 +13,12 @@ app = Flask(__name__)
 app.config.from_object('config')
 
 #database
-db = SQLAlchemy
+db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
 #server
 endereco_ipv4 = gethostbyname(gethostname())
-server = Server(host=endereco_ipv4, port=80)
+server = Server(host=endereco_ipv4, port=5000)
 
 #manager
 manager = Manager(app)
@@ -26,8 +26,6 @@ manager = Manager(app)
 #manager add command
 manager.add_command('db', MigrateCommand)
 manager.add_command('runserver', server)
-
-
 
 #controllers
 from app.controllers import default
