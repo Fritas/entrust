@@ -1,6 +1,6 @@
 # Entrust
 
-One Paragraph of project description goes here
+O Entrust é uma aplicação que visa representar de maneira didática a solução e a visualização gráfica de funções matemáticas de primeiro a quarto grau. É o trabalho desenvolvido em Projeto Integrador III por Adriano Damascenod da Silva Júnior do IFC - Campus Blumenau.
 
 ## Getting Started
 
