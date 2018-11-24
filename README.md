@@ -9,7 +9,7 @@ Python 3
 
 VirtualEnv
 
-Você pode baixar o Python 3 através do site oficial na página de [downloads](https://www.python.org/downloads/){:target="_blank"}.
+Você pode baixar o Python 3 através do site oficial na página de [downloads](https://www.python.org/downloads/).
 
 Caso você não tenha a virtualenv, instale-a utilizando:
 ```
@@ -55,18 +55,18 @@ Caso seu sistema operacional não utilize Python 3 por padrão, execute da segui
 ```
 
 ## O Desenvolvimento da aplicação foi feito com as seguintes linguagens e bibliotecas
-- [Python](https://www.python.org/){:target="_blank"}
-  - [Flask](http://flask.pocoo.org/){:target="_blank"}
-  - [SymPy](https://www.sympy.org/pt/index.html){:target="_blank"}
-- [JavaScript](https://www.javascript.com){:target="_blank"}
+- [Python](https://www.python.org/)
+  - [Flask](http://flask.pocoo.org/)
+  - [SymPy](https://www.sympy.org/pt/index.html)
+- [JavaScript](https://www.javascript.com)
   - [jQuery v3](https://jquery.com){:target="_blank"}
-  - [Function Plot](https://mauriciopoppe.github.io/function-plot/){:target="_blank"}
+  - [Function Plot](https://mauriciopoppe.github.io/function-plot/)
 - HTML5
 - CSS3
   - [Bootstrap v4.0](https://getbootstrap.com){:target="_blank"}
 
 ## Equipe
-* Desenvolvedor: Adriano Damasceno da Silva Júnior. Aluno do Curso Técnico em Informática Integrado ao Ensino Médio do IFC Campus Blumenau; adamascenosj@gmail.com. [Currículo Lattes](http://lattes.cnpq.br/8609985120910990){:target="_blank"}. [GitHub](https://github.com/Fritas){:target="_blank"}
-* Orientador: Hylson Vescovi Netto. Professor de Informática, IFC Campus Blumenau, hylson.vescovi@ifc.edu.br. [Currículo Lattes](http://lattes.cnpq.br/6155862179794521){:target="_blank"}. [GitHub](https://github.com/hvescovi){:target="_blank"}
-* Co-orientador: Riad Mattos Nassiffe. Professor de Informática, IFC Campus Blumenau, riad.nassiffe@ifc.edu.br. [Currículo Lattes](http://lattes.cnpq.br/8149931631827091){:target="_blank"}. [GitHub](https://github.com/riadnassiffe){:target="_blank"}
+* Desenvolvedor: Adriano Damasceno da Silva Júnior. Aluno do Curso Técnico em Informática Integrado ao Ensino Médio do IFC Campus Blumenau; adamascenosj@gmail.com. [Currículo Lattes](http://lattes.cnpq.br/8609985120910990). [GitHub](https://github.com/Fritas)
+* Orientador: Hylson Vescovi Netto. Professor de Informática, IFC Campus Blumenau, hylson.vescovi@ifc.edu.br. [Currículo Lattes](http://lattes.cnpq.br/6155862179794521). [GitHub](https://github.com/hvescovi)
+* Co-orientador: Riad Mattos Nassiffe. Professor de Informática, IFC Campus Blumenau, riad.nassiffe@ifc.edu.br. [Currículo Lattes](http://lattes.cnpq.br/8149931631827091)}. [GitHub](https://github.com/riadnassiffe)
 * Colaborador: Alexandre Veloso dos Santos. Professor de Matemática, IFC Campus Blumenau, alexandre.santos@ifc.edu.br.
