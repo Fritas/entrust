@@ -4,7 +4,7 @@ Entrust é uma aplicação Web que tem o intuito de solucionar e representar gra
 ## Desenvolvimento
 O master do projeto sempre será mantido como a versão oficial, disponível para acesso em entrust.blumenau.ifc.edu.br'.
 
-### Pré-Requisitos
+## Pré-Requisitos
 Python 3
 
 VirtualEnv
@@ -21,7 +21,9 @@ Caso seu sistema operacional não utilize Python 3 por padrão, execute da segui
 ```
 
 
-### Instalação
+## Instalação
+### Criando Máquina Virtual
+
 Crie uma máquina virtual utilizando os seguintes passos:
 ```
 > python -m venv <nome-da-maquina-virtual>
@@ -40,7 +42,7 @@ Ative a VirtualEnv através do seguinte comando:
   ```
   > .\<nome-da-maquina-virtual>\Scripts\activate
   ```
-  
+### Instalando bibliotecas
 Dentro do diretorio você encontrará o arquivo requirements.txt, instale as bibliotecas com o seguinte comando.
 ```
 > pip install -r requirements.txt
@@ -52,7 +54,8 @@ Caso seu sistema operacional não utilize Python 3 por padrão, execute da segui
 ```
 
 ### Executando
-Para ligar o servidor e poder acessar ele na web, é preciso que faça esse comando dentro do diretorio do projeto:
+
+Dentro da pasta do projeto execute o seguinte comando para iniciar o servidor.
 ```
 > python run.py runserver
 ```
