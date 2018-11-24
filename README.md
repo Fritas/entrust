@@ -79,5 +79,5 @@ Caso seu sistema operacional não utilize Python 3 por padrão, execute da segui
 ## Equipe
 * Desenvolvedor: Adriano Damasceno da Silva Júnior. Aluno do Curso Técnico em Informática Integrado ao Ensino Médio do IFC Campus Blumenau; adamascenosj@gmail.com. [Currículo Lattes](http://lattes.cnpq.br/8609985120910990). [GitHub](https://github.com/Fritas)
 * Orientador: Hylson Vescovi Netto. Professor de Informática, IFC Campus Blumenau, hylson.vescovi@ifc.edu.br. [Currículo Lattes](http://lattes.cnpq.br/6155862179794521). [GitHub](https://github.com/hvescovi)
-* Co-orientador: Riad Mattos Nassiffe. Professor de Informática, IFC Campus Blumenau, riad.nassiffe@ifc.edu.br. [Currículo Lattes](http://lattes.cnpq.br/8149931631827091)}. [GitHub](https://github.com/riadnassiffe)
+* Co-orientador: Riad Mattos Nassiffe. Professor de Informática, IFC Campus Blumenau, riad.nassiffe@ifc.edu.br. [Currículo Lattes](http://lattes.cnpq.br/8149931631827091). [GitHub](https://github.com/riadnassiffe)
 * Colaborador: Alexandre Veloso dos Santos. Professor de Matemática, IFC Campus Blumenau, alexandre.santos@ifc.edu.br.
