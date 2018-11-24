@@ -25,14 +25,22 @@ Caso seu sistema operacional não utilize Python 3 por padrão, execute da segui
 Crie uma máquina virtual utilizando os seguintes passos:
 ```
 > python -m venv <nome-da-maquina-virtual>
-> source <nome-da-maquina-virtual>/bin/activate
 ```
 Caso seu sistema operacional não utilize Python 3 por padrão, execute da seguinte forma.
 ```
 > python3 -m venv <nome-da-maquina-virtual>
-> source <nome-da-maquina-virtual>/bin/activate
 ```
 
+Ative a VirtualEnv através do seguinte comando:
+  #### Linux
+  ```
+  > source <nome-da-maquina-virtual>/bin/activate
+  ```
+  #### Windows
+  ```
+  > .\<nome-da-maquina-virtual>\Scripts\activate
+  ```
+  
 Dentro do diretorio você encontrará o arquivo requirements.txt, instale as bibliotecas com o seguinte comando.
 ```
 > pip install -r requirements.txt
@@ -63,7 +71,7 @@ Caso seu sistema operacional não utilize Python 3 por padrão, execute da segui
   - [Function Plot](https://mauriciopoppe.github.io/function-plot/)
 - HTML5
 - CSS3
-  - [Bootstrap v4.0](https://getbootstrap.com){:target="_blank"}
+  - [Bootstrap v4.0](https://getbootstrap.com)
 
 ## Equipe
 * Desenvolvedor: Adriano Damasceno da Silva Júnior. Aluno do Curso Técnico em Informática Integrado ao Ensino Médio do IFC Campus Blumenau; adamascenosj@gmail.com. [Currículo Lattes](http://lattes.cnpq.br/8609985120910990). [GitHub](https://github.com/Fritas)
