@@ -70,7 +70,7 @@ Caso seu sistema operacional não utilize Python 3 por padrão, execute da segui
   - [Flask](http://flask.pocoo.org/)
   - [SymPy](https://www.sympy.org/pt/index.html)
 - [JavaScript](https://www.javascript.com)
-  - [jQuery v3](https://jquery.com){:target="_blank"}
+  - [jQuery v3](https://jquery.com)
   - [Function Plot](https://mauriciopoppe.github.io/function-plot/)
 - HTML5
 - CSS3
