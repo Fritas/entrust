@@ -6,12 +6,20 @@ O master do projeto sempre será mantido como a versão oficial, disponível par
 
 ### Pré-Requisitos
 Python 3
+
 VirtualEnv
+
+Você pode baixar o Python 3 através do site oficial na página de [downloads] (https://www.python.org/downloads/).
 
 Caso você não tenha a virtualenv, instale-a utilizando:
 ```
 > pip install virtualenv
 ```
+Caso seu sistema operacional não utilize Python 3 por padrão, execute da seguinte forma.
+```
+> pip3 install virtualenv
+```
+
 
 ### Instalação
 Crie uma máquina virtual utilizando os seguintes passos:
