@@ -1,16 +1,8 @@
 from flask import request, render_template, redirect, url_for, abort
-<<<<<<< HEAD
 from app import app, db
 from app.models.compiler import Compiler, InvalidCompiler
 from app.models.function import Function
 from app.models.order_dict import OrderDict
-=======
-from app import app
-from app.models.compiler import Compiler, InvalidCompiler
-from app.models.function import Function
-from app.models.order_dict import OrderDict
-from app.models.models import Question, Answer
->>>>>>> ab5dff9aa15e1bc47d596de0145988259370390a
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -71,7 +63,6 @@ def graph_function():
             else:
                 dic_page['solve_real'] = function.get_solve()
     finally:
-        print(compiler.dic_coefficients.sort_key())
         return render_template('graph_function.html', dic=dic_page)
 
 @app.route('/question', methods=['POST', 'GET'])
