@@ -1,9 +1,3 @@
 {
-<<<<<<< HEAD
-    "python.pythonPath": "venv\\Scripts\\python.exe",
-    "python.linting.enabled": false
-=======
-    "python.pythonPath": "${workspaceFolder}/venv/bin/python",
-    "python.linting.pylintEnabled": false
->>>>>>> ab5dff9aa15e1bc47d596de0145988259370390a
+    "python.pythonPath": "C:\\Users\\adria\\AppData\\Local\\Programs\\Python\\Python36-32\\python.exe"
 }

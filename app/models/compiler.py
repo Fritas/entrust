@@ -169,9 +169,14 @@ class Compiler(object):
         if self.value == '(':
             self.stack.push(self.value)
         #se a pilha nao for vazia e for o fechamento de um parenteses e o topo da pilha ter um parenteses aberto
-        elif not self.stack.isEmpty() and\
-         self.value == ')' and self.stack.top() == '(':
-            self.stack.pop()
+        elif self.value == ')':
+            try:
+                if self.stack.isEmpty() or not self.stack.top() == '(':
+                    raise EmptyStack()
+            except EmptyStack as error:
+                self.error = error
+            else:
+                self.stack.pop()
         #caso seja modulo
         elif self.value == '|':
             if not self.stack.isEmpty() \
@@ -337,14 +342,3 @@ class Compiler(object):
                     value = '%(' + token[1] + ')s'
                 string += value
         return string
-
-if __name__ == '__main__':
-    c = Compiler('ax^6 +bx^5 + cx^4 + dx ^3 + ex^2 + fx + g')#(ax^|2|) + |')
-    print('Validade: ', c.valid_function())
-    print('Lista de tokens: ', c.lista_tokens)
-    print('Dic coefficientes', c.dic_coefficients)
-    print('String Python: ', c.compiler_function_python())
-    print('String Python: ', c.compiler_function_python() %(c.dic_coefficients))
-    print('String Web: ', c.compiler_function_web() %(c.dic_coefficients))
-    print('String Math: ', c.compiler_fucntion_math() %(c.dic_coefficients))
-    print('Error: ', c.error)
