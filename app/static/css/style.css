@@ -73,6 +73,14 @@ footer{
         .clear {
             clear: both;
         }
+    /* Buttons */
+    .btn-circle {
+            border-radius: 50%;
+            border-style: solid;
+            text-align: center;
+            font-size: 100%;
+            color: rgb(38, 99, 127);    
+        }
 
 /* IDs */
     /* DYNAMIC */
@@ -95,4 +103,8 @@ footer{
     /* block */
     #block{
         padding: 5px;
+    }
+
+    #howToWriteFunctions {
+
     }
