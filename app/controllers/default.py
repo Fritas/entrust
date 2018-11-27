@@ -65,31 +65,6 @@ def graph_function():
     finally:
         return render_template('graph_function.html', dic=dic_page)
 
-@app.route('/question', methods=['POST', 'GET'])
-def question():
-    try:
-        id = request.args.get('id')
-    except Exception as identifier:
-        print("\n\n Question error: %s \n" %(identifier))
-        return abort(404)
-    else:
-        q = Question(
-            text='Lorem ipsum a aenean gravida torquent platea consequat cursus orci commodo ut, nibh vehicula sollicitudin elit rutrum platea pulvinar aenean commodo varius tortor, per risus neque curabitur eros ad nulla netus pulvinar arcu. metus curabitur placerat et ultricies per sem volutpat, libero sollicitudin ornare sagittis taciti leo, dolor adipiscing bibendum tincidunt nibh molestie. maecenas nisl elit ut consequat felis enim nam dictumst nulla vestibulum, dictum cursus consectetur sapien justo adipiscing eget lorem vulputate mattis dictumst, lobortis porta ut libero etiam gravida porta euismod quis. phasellus turpis aenean consequat euismod molestie vel curae in, suscipit porttitor interdum nulla velit dui posuere faucibus, diam tempor hac mi ad euismod diam.',
-            graph_function='1*x^3+1*x^2+1*x+1',
-            options=[
-                Answer('1', 'a', 'Lorem ipsum per accumsan aliquam maecenas, diam vitae ad ornare.'),
-                Answer('2', 'b', 'Lorem ipsum per accumsan aliquam maecenas, diam vitae ad ornare.'),
-                Answer('3', 'c', 'Lorem ipsum per accumsan aliquam maecenas, diam vitae ad ornare.'),
-                Answer('4', 'd', 'Lorem ipsum per accumsan aliquam maecenas, diam vitae ad ornare.'),
-                Answer('5', 'e', 'Lorem ipsum per accumsan aliquam maecenas, diam vitae ad ornare.')
-                ],
-            answer='Lorem ipsum per accumsan aliquam maecenas, diam vitae ad ornare. ',
-            name='teste',
-            img=None,
-            id=5,
-
-        )
-        return render_template('question.html', question=q)
 
 @app.route('/about')
 def about():

@@ -1,11 +1,10 @@
-{% extends "layout.html" %}
-{% block title %} Sobre {% endblock%}
+{% extends "base.html" %}
+
+{% block title %} {{ super() }} - Sonbre {% endblock title %}
 {% block script %}
-    <script src="https://unpkg.com/d3@3/d3.min.js"></script>
-    <script src="https://unpkg.com/function-plot@1/dist/function-plot.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="/static/style.css">
-{% endblock %}
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+
+{% endblock script %}
 
 {% block section %}
 
@@ -85,4 +84,4 @@
 	</div>
 </div>
 
-{% endblock %}
+{% endblock section %}

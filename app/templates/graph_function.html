@@ -1,12 +1,15 @@
-{% extends "layout.html" %}
-{% block title %} Função {% endblock%}
+{% extends "base.html" %}
+
+{% block title %} {{ super() }} - Função {% endblock title %}
+
 {% block script %}
-    <script src="https://unpkg.com/d3@3/d3.min.js"></script>
-    <script src="https://unpkg.com/function-plot@1/dist/function-plot.js"></script>
+
+<script src="https://unpkg.com/d3@3/d3.min.js"></script>
+<script src="https://unpkg.com/function-plot@1/dist/function-plot.js"></script>
     <!-- LINKS INTERNOS-->
-    <link rel="stylesheet" type="text/css" href="/static/style.css">
-    <script type="text/javascript" src="/static/function_plot.js"></script>
-    <script type="text/javascript" src="/static/jquery.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- -->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/function_plot.js') }}"></script>
     <script>
         $(document).ready(
             function(){
@@ -43,7 +46,7 @@
             
         });
     </script>
-{% endblock %}
+{% endblock script %}
 
 {% block section%}
 <body onresize="reloadGraph()" onload="reloadGraph()">
@@ -135,4 +138,4 @@
         }
     </script>
 </body>
-{% endblock %}
+{% endblock section %}

@@ -1,8 +1,11 @@
-{% extends "layout.html" %}
-{% block title %} Sobre {% endblock%}
+{% extends "base.html" %}
+
+{% block title %} {{ super() }} - Erro {% endblock title%}
 {% block script %}
-	<link rel="stylesheet" type="text/css" href="/static/style.css">
-{% endblock %}
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+
+{% endblock script %}
+
 
 {% block section %}
 <!-- LINHA 1-->
@@ -20,4 +23,4 @@
 		</div>
 	</div>
 </div>
-{% endblock %}
+{% endblock section %}

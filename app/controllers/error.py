@@ -11,6 +11,7 @@ def page_not_found(e):
     return render_template('error.html',\
      mensagem='O URL informado não condiz com nenhuma das nossas páginas. Por favor retorne a página inicial!')
 
+
 @app.errorhandler(500)
 def page_not_found(e):
     return render_template('error.html',\
