@@ -32,6 +32,9 @@ footer{
         .bg-yellow {
             background-color: #FFF718;
         }
+        .bg-white {
+            background-color: white;
+        }
 
         /* border */
         .border-blue-1 {
@@ -48,6 +51,9 @@ footer{
         }
         .border-blue-5 {
             border-color: rgb(0, 130, 204); 
+        }
+        .navbar-toggler-icon{
+            float: right;
         }
 
     /* */
@@ -69,18 +75,19 @@ footer{
         .card-block {
             min-height: 100%;
         }
-
         .clear {
             clear: both;
         }
     /* Buttons */
-    .btn-circle {
+        .bnt-circle{
             border-radius: 50%;
-            border-style: solid;
-            text-align: center;
-            font-size: 100%;
-            color: rgb(38, 99, 127);    
+            width: auto;
+            height: auto;
+            background-color: transparent;
+            border-color: transparent;
         }
+        
+        
 
 /* IDs */
     /* DYNAMIC */
@@ -89,14 +96,13 @@ footer{
         float: right;
     }
     @media (min-width: 768px){
-        #bottom-dynamic{
-            visibility: hidden;
-
+        div.btn-toggle{
+            display: none;
         }
     }
     @media (max-width: 768px){
-        #bottom-dynamic{
-            visibility: show;
+        div.btn-toggle{
+            display: inline;
         }
 
     }
@@ -105,6 +111,4 @@ footer{
         padding: 5px;
     }
 
-    #howToWriteFunctions {
 
-    }
