@@ -4,14 +4,15 @@
 
 {% block script %}
 
-<script src="https://unpkg.com/d3@3/d3.min.js"></script>
-<script src="https://unpkg.com/function-plot@1/dist/function-plot.js"></script>
+    <script src="https://unpkg.com/d3@3/d3.min.js"></script>
+    <script src="https://unpkg.com/function-plot@1/dist/function-plot.js"></script>
     <!-- LINKS INTERNOS-->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <!-- -->
     <script type="text/javascript" src="{{ url_for('static', filename='js/function_plot.js') }}"></script>
     <script>
         $(document).ready(
+
             function(){
                 // BOTOES RELACIONADOS AS CAIXAS DE ENTRADA DE FUNCAO E DADOS DA FUNCAO PARA TELAS MENORES QUE 768PX DE LARGURA               
                 $(".toggler-function").click(
@@ -27,6 +28,7 @@
                             height: 'toggle'
                     });
                 });
+                
 
                 $(window).resize(
                     // REAPARECE CAIXAS DE ENTRADA DE FUNCAO E DADOS DA FUNCAO PARA TELAS MAIORES QUE 768PX QUANDO CASO ELAS ESTEJAM FECHADAS
@@ -39,9 +41,6 @@
                                 height: 'show'
                             });       
                         }
-                        if ($(window).height() > $('body').height()){
-                            $("footer").css({"position": "absolute", "bottom" : "0px", "width": "100%"});
-                        }
                 });
             
         });
@@ -50,86 +49,175 @@
 
 {% block section%}
 <body onresize="reloadGraph()" onload="reloadGraph()">
+    
     <div class="row container-fluid">
-        <div class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3 cards">
-            <!-- form -->
-            <form method="GET" class="form-group">
-                <!-- Entrada de dados -->
-                <div class="card border-blue-5">
-                    <!-- Entrada da função -->
-                    <div class="card-header text-white bg-blue-5">
-                        <h5 class="card-title text-center">Função
-                            <button type = "button" class="btn toggler-function text-white bg-blue-5 navbar-dark" id="bottom-dynamic" style="margin-bottom: 5px"><span class="navbar-toggler-icon"></span></button><!-- navbar-toggler-icon é um icon do boostrap -->    
-                        </h5>
-                    </div>
-                    <div class="card-body toggler-button-function">
-                        <div class="input-group">
-                            <!-- Input Function -->
-                            <div class="input-group-prepend">
-                                <span class="input-group-text text-white bg-blue-3">f(x) =</span>
-                                <span>
-                                    <input list="functions_options" id="input_function" type="text" class="form-control" name="input_function" placeholder='Entre com uma função' value="{{ dic.input_function }}">
-                                </span>
-                                <!-- https://www.w3schools.com/html/tryit.asp?filename=tryhtml_elem_datalist -->
-                                <datalist id="functions_options">
-                                    <option value='ax + b'>ax + b</option>
-                                    <option value='ax^2 + bx + c'>ax^2 + bx + c</option>
-                                    <option value='ax^3 + bx^2 + cx + d'>ax^3 + bx^2 + cx + d</option>
-                                    <option value='ax^4 + bx^3 + cx^2 + dx + e'>ax^4 + bx^3 + cx^2 + dx + e</option>
-                                </datalist>
-                            </div>
+            <div class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3 cards">
+                <!-- form -->
+                <form method="GET" class="form-group">
+                    <!-- Entrada de dados -->
+                    <div class="card border-blue-5">
+                        <!-- Entrada da função -->
+                        <div class="card-header text-white bg-blue-5">
+                            <h5 class="card-title text-center">
+                                Função
+                                <div class="d-inline" style="float:right;">
+                                    <!-- Botao referente a pergunta -->
+                                    <button type="button" class="btn-circle" style="background-color: transparent;
+                                    border-color: transparent;" data-toggle="modal" data-target="#howToWriteFunctions"><i class="fa fa-question-circle icon-question" style="font-size: 1.5em; color: white;"></i></button>
+                                    <!-- Button toggler -->
+                                    <div class="btn-toggle">
+                                        <button type="button" class="btn toggler-function text-white bg-blue-5 navbar-dark" id="bottom-dynamic"><span class="navbar-toggler-icon"></span></button><!-- navbar-toggler-icon é um icon do boostrap -->
+                                    </div>
+                                </div>   
+                            </h5>
                         </div>
-                    <!-- Mensagens de erro -->
-                    {% if dic.error %}
-                    <div class="alert bg-yellow" style="background-color: #FFF718" role="alert">
-                        <p> {{ dic.error }} </p>
-                    </div>    
-                    {% endif %}
-                    </div>
-                    <!-- Coeficientes da função -->
-                    {% if dic.coefficients %}
-                        <div class="card-header text-white bg-blue-5 toggler-button-function">
-                            <h5 class="card-title text-center">Coeficientes</h5> 
-                        </div>               
                         <div class="card-body toggler-button-function">
                             <div class="input-group">
-                                <!-- Linha: Input coefficients -->
-                                <div class="form-row">
-                                    {% for key in dic.coefficients %}
-                                        <!-- variavel individual -->
-                                        <div class="input-group-prepend col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                                            <span class="input-group-text text-white bg-blue-3" id={{ key }}>{{ key }}</span>
-                                            <span><input id={{ key }} type="number" step="any" class="form-control" aria-label="Small"  name={{ key }} value='{{ dic.coefficients[key] }}'></span>
-                                        </div>
-                                    {% endfor %}
+                                <!-- Input Function -->
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text text-white bg-blue-3">f(x) =</span>
+                                    <span>
+                                        <input list="functions_options" id="input_function" type="text" class="form-control" name="input_function" placeholder='Entre com uma função' value="{{ dic.input_function }}">
+                                    </span>
+                                    <!-- https://www.w3schools.com/html/tryit.asp?filename=tryhtml_elem_datalist -->
+                                    <datalist id="functions_options">
+                                        <option value='ax + b'>ax + b</option>
+                                        <option value='ax^2 + bx + c'>ax^2 + bx + c</option>
+                                        <option value='ax^3 + bx^2 + cx + d'>ax^3 + bx^2 + cx + d</option>
+                                        <option value='ax^4 + bx^3 + cx^2 + dx + e'>ax^4 + bx^3 + cx^2 + dx + e</option>
+                                    </datalist>
                                 </div>
                             </div>
+                        <!-- Mensagens de erro -->
+                        {% if dic.error %}
+                        <div class="alert bg-yellow" style="background-color: #FFF718" role="alert">
+                            <p> {{ dic.error }} </p>
+                        </div>    
+                        {% endif %}
                         </div>
-                    {% endif %}
-                </div>
-                <!-- submit -->
-                <button class="btn text-white bg-blue-3 toggler-button-function" style="margin-top: 5px" type="submit">Gerar gráfico</button>
-            </form>
-            <!-- \form -->
+                        <!-- Coeficientes da função -->
+                        {% if dic.coefficients %}
+                            <div class="card-header text-white bg-blue-5 toggler-button-function">
+                                <h5 class="card-title text-center">Coeficientes</h5> 
+                            </div>               
+                            <div class="card-body toggler-button-function">
+                                <div class="input-group">
+                                    <!-- Linha: Input coefficients -->
+                                    <div class="form-row">
+                                        {% for key in dic.coefficients %}
+                                            <!-- variavel individual -->
+                                            <div class="input-group-prepend col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                                <span class="input-group-text text-white bg-blue-3" id={{ key }}>{{ key }}</span>
+                                                <span><input id={{ key }} type="number" step="any" class="form-control" aria-label="Small"  name={{ key }} value='{{ dic.coefficients[key] }}'></span>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                
+                    <!-- submit -->
+                    <button class="btn text-white bg-blue-3 toggler-button-function" style="margin-top: 5px" type="submit">{% if dic.input_function %}Atualizar Gráfico{% else %}Gerar gráfico{% endif %}</button>
 
-            <!-- Informações da função -->
-            <div class="card border-blue-5">
-                <div class="card-header text-white bg-blue-5">
-                    <h5 class="card-title text-center">Dados da função
-                            <button type = "button" class="btn toggler-function_data text-white bg-blue-5 navbar-dark" id="bottom-dynamic" style="margin-bottom: 5px"><span class="navbar-toggler-icon"></span></button><!-- navbar-toggler-icon é um icon do boostrap -->
-                    </h5>
-                </div>                
-                <div class="card-body" id="toggler-button-function_data">
-                    f(x) = {{ dic.function_math }}
-                    <br>Solução Real = {{ dic.solve_real }}
+                </form>
+                <!-- \form -->
+
+                <!-- Informações da função -->
+                <div class="card border-blue-5">
+                    <div class="card-header text-white bg-blue-5">
+                        <h5 class="card-title text-center">Dados da função
+                            <div class="btn-toggle">
+                                <button type = "button" class="btn toggler-function_data text-white bg-blue-5 navbar-dark" id="bottom-dynamic" style="margin-bottom: 5px"><span class="navbar-toggler-icon"></span></button><!-- navbar-toggler-icon é um icon do boostrap -->
+                            </div>
+                        </h5>
+                    </div>                
+                    <div class="card-body" id="toggler-button-function_data">
+                        f(x) = {{ dic.function_math }}
+                        <br>Solução Real = {{ dic.solve_real }}
+                    </div>
+                </div>
+            </div>
+            <!-- Grafico -->
+            <div class="col-12 col-sm-12 col-md-8 col-lg-9 col-xl-9">
+                <div class="graph"></div>
+            </div>
+    </div>
+
+    <!-- Models -->
+    <!-- Modal -->
+    <div class="modal fade" id="howToWriteFunctions" role="dialog">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header text-white bg-blue-5">
+                
+                <h4 class="modal-title">Como escrever funções?</h4>
+                <button type="button" class="close" aria-label="Close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                    <b>Funções:</b> funções representam relações entre dois conjuntos diferentes. Para inserir funções nos sistemas siga os exemplos e descrições abaixo.                
+                    <br>
+                    <b>Exemplos:</b>
+                        <ul>
+                            <li>ax + b</li>
+                            <li>x^2 + 1/2</li>
+                            <li>x^(1/2)</li>
+                            <li>|x| + 3</li>
+                        </ul>
+
+                    <br>
+                    <br>
+                    <b>Operadores:</b> você pode utilizar os seguintes opreadores nas funções:
+                    <ul>
+                        <li> &#43 : adição</li>
+                        <li> &#45 : subtração</li>
+                        <li> &#42 : multiplicação</li>
+                        <li> &#47 : divisão</li>
+                        <li> &#94 : potenciação </li>
+                        <li> &#40 &#41: parenteses</li>
+                        <li> &#124 : módulo</li>
+                    </ul>
+                    <br>
+                        <b>Coeficientes</b>: você pode utilizar diferentes letras e palavras para representar coeficientes nas funções. Lembrando que coeficientes não podem iniciar com números, mas podem conte-los.
+                            <br>
+                            <b>Exemplos:</b>
+                            <ul>
+                                <li>peso</li>
+                                <li>b</li>
+                                <li>b1</li>
+                                <li>massa</li>
+                                <li>x1</li>
+                                <li>x2A</li>
+                            </ul>
+                    <br> 
+                        <b>Incógnitas:</b> utilize a letra ``x'' para representar a incógnita.
+                        <br>
+                        <b>Observação:</b> o sistema é limitado ao uso de somente uma incógnita, sendo sempre a letra ``x''.
+                        
+                    <br>
+                    <br>
+                        <b>Números:</b> você pode escrever diferentes números &real (Conjunto dos números Reais), utilizando vírgulas para representar as casas decimais.
+                        <br> 
+                        <b>Exemplos:</b>
+                        <ul>
+                            <li>1</li>
+                            <li>2,222</li>
+                            <li>0,00005</li>
+                            <li>65</li>
+                        </ul>
+                        <b>Observação:</b> A aplicação não compreende frações como números, porém é possível escrever diferentes frações dividindo um número por outro, como no exemplo a seguir: "2/3", "4/9", "1/3".
+                    </p>
+                </div>
+                <div class="modal-footer bg-blue-5">
+                    <button type="button" class="btn bg-white" data-dismiss="modal"><b>Fechar</b></button>
                 </div>
             </div>
         </div>
-        <!-- Grafico -->
-        <div class="col-12 col-sm-12 col-md-8 col-lg-9 col-xl-9">
-            <div class="graph"></div>
-        </div>
     </div>
+
     <!-- Executar o código JavaScript 
     O JS não reconhece as variáveis do Flask em arquivo externo-->
     <script>
